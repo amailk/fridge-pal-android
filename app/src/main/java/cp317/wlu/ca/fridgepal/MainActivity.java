@@ -141,8 +141,12 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     return FridgeFragment.newInstance();
+                case 1:
+                    return RecipesFragment.newInstance();
+                case 2:
+                    return GroceryListFragment.newInstance();
                 default:
-                    return PlaceholderFragment.newInstance(position + 1);
+                    return FridgeFragment.newInstance();
             }
         }
 
