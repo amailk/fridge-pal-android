@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 public class RecipesFragment extends Fragment {
 
-    private RecipesViewModel mViewModel;
+    private RecipesViewModel viewModel;
 
     public static RecipesFragment newInstance() {
         return new RecipesFragment();
@@ -26,7 +26,7 @@ public class RecipesFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(RecipesViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(RecipesViewModel.class);
         // TODO: Use the ViewModel
     }
 
