@@ -17,9 +17,14 @@ public class RecipesViewModel extends ViewModel {
 
     public RecipesViewModel(){
         recipeRepository = new LocalRecipeRepository();
+
     }
 
     public LiveData<List<Recipe>> getRecipeLiveData() {
         return recipeLiveData;
+    }
+
+    public void fetchRecipes() {
+        recipeLiveData.setValue(recipeRepository.getRecipes());
     }
 }
