@@ -34,19 +34,8 @@ public class GroceryDayFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        // ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item, );
-
-        // ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity() ,android.R.layout.simple_spinner_dropdown_item,  R.array.days);
-
-
-        Button nextButton = (Button)view.findViewById(R.id.button3);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                swapfragment();
-            }
-        });
+        Button nextButton = view.findViewById(R.id.button_next);
+        nextButton.setOnClickListener(onNextPressedListener::onNextPressed);
         return view;
     }
 
