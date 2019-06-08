@@ -1,11 +1,7 @@
 package cp317.wlu.ca.fridgepal;
 
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -14,9 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
-
-import java.lang.reflect.Array;
 
 
 /**
@@ -24,29 +17,18 @@ import java.lang.reflect.Array;
  */
 public class GroceryDayFragment extends Fragment {
 
-
-   /* private DayViewModel viewModel;
-
-   @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this.getActivity()).get(DayViewModel.class);
-
-        viewModel.getSelectedDay().observe(this, item -> {
-            displayDetails(viewModel.getSelectedDayDetails(item));
-        });
+    interface OnNextPressedListener {
+        void onNextPressed(View view);
     }
 
-    public void displayDetails(Day day){
-
-    }*/
+    private OnNextPressedListener onNextPressedListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_grocery_day, container, false);
-        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+        Spinner spinner = view.findViewById(R.id.spinner);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.days, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -66,18 +48,9 @@ public class GroceryDayFragment extends Fragment {
             }
         });
         return view;
-        // TextView output = (TextView)view.findViewById(R.id.)
-        // Inflate the layout for this fragment
-        // return inflater.inflate(R.layout.fragment_grocery_day, container, false);
     }
 
-    private void swapfragment(){
-        DietaryPreferenceFragment newfragment = new DietaryPreferenceFragment();
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fl1, newfragment);
-        fragmentTransaction.addToBackStack(null);
-
-        fragmentTransaction.commit();
+    public void setOnNextPressedListener(OnNextPressedListener onNextPressedListener) {
+        this.onNextPressedListener = onNextPressedListener;
     }
-
 }

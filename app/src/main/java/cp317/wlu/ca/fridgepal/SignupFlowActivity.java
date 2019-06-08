@@ -1,31 +1,34 @@
 package cp317.wlu.ca.fridgepal;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
 
 
 public class SignupFlowActivity extends AppCompatActivity {
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_flow);
 
-        GroceryDayFragment myfragment = new GroceryDayFragment();
-        myfragment.setArguments(getIntent().getExtras());
+        ConfirmFragment confirmFragment = new ConfirmFragment();
 
-        getSupportFragmentManager().beginTransaction().add(R.id.fl1, myfragment).commit();
+        DietaryPreferenceFragment dietaryPreferenceFragment = new DietaryPreferenceFragment();
+        dietaryPreferenceFragment.setOnNextPressedListener(v -> getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, confirmFragment)
+                .commit());
 
+        GroceryDayFragment groceryDayFragment = new GroceryDayFragment();
+        groceryDayFragment.setOnNextPressedListener(v -> getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, dietaryPreferenceFragment)
+                .commit());
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container, groceryDayFragment)
+                .commit();
     }
 }
 

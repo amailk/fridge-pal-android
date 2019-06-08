@@ -15,11 +15,11 @@ import android.widget.Button;
  */
 public class DietaryPreferenceFragment extends Fragment {
 
-
-    public DietaryPreferenceFragment() {
-        // Required empty public constructor
+    interface OnNextPressedListener {
+        void onNextPressed(View view);
     }
 
+    private OnNextPressedListener onNextPressedListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,27 +27,12 @@ public class DietaryPreferenceFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dietary_preference, container, false);
 
-        Button nextButton = (Button)view.findViewById(R.id.button_nextC);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                swapfragment();
-            }
-        });
+        Button nextButton = view.findViewById(R.id.button_nextC);
+        nextButton.setOnClickListener(onNextPressedListener::onNextPressed);
         return view;
-        // TextView output = (TextView)view.findViewById(R.id.)
-        // Inflate the layout for this fragment
-        // return inflater.inflate(R.layout.fragment_grocery_day, container, false);
     }
 
-    private void swapfragment(){
-        ConfirmFragment newfragment = new ConfirmFragment();
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fl1, newfragment);
-        fragmentTransaction.addToBackStack(null);
-
-        fragmentTransaction.commit();
+    public void setOnNextPressedListener(OnNextPressedListener onNextPressedListener) {
+        this.onNextPressedListener = onNextPressedListener;
     }
-
 }
