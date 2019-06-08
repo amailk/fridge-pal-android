@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DietaryPreferenceFragment">
+
+    <Button
+        android:id="@+id/button_nextC"
+        android:layout_width="140dp"
+        android:layout_height="54dp"
+        android:text="@string/nextToConfirm_button"
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="661dp" />
+
+    <LinearLayout
+        android:layout_width="395dp"
+        android:layout_height="645dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:text="What's your Dietary Preference?"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="match_parent"
+            android:layout_height="121dp"
+            tools:src="@tools:sample/avatars[0]" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:src="@tools:sample/avatars[2]" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:src="@tools:sample/avatars[3]" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:src="@tools:sample/avatars[6]" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

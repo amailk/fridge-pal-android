@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GroceryDayFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="315dp"
+            android:layout_height="107dp"
+            android:text="What's your Grocery day?"
+            android:textAlignment="center"
+            android:textSize="36sp"
+            tools:layout_editor_absoluteX="48dp"
+            tools:layout_editor_absoluteY="185dp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="353dp"
+            android:layout_height="52dp"
+            android:entries="@array/days"
+            tools:layout_editor_absoluteX="29dp"
+            tools:layout_editor_absoluteY="339dp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nextToDiet_button"
+            tools:layout_editor_absoluteX="306dp"
+            tools:layout_editor_absoluteY="666dp" />
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>
