@@ -1,5 +1,6 @@
 package cp317.wlu.ca.fridgepal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -11,19 +12,24 @@ public class SignupFlowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_flow);
 
+        GroceryDayFragment groceryDayFragment = new GroceryDayFragment();
+        DietaryPreferenceFragment dietaryPreferenceFragment = new DietaryPreferenceFragment();
         ConfirmFragment confirmFragment = new ConfirmFragment();
 
-        DietaryPreferenceFragment dietaryPreferenceFragment = new DietaryPreferenceFragment();
+        groceryDayFragment.setOnNextPressedListener(v -> getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, dietaryPreferenceFragment)
+                .commit());
+
         dietaryPreferenceFragment.setOnNextPressedListener(v -> getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, confirmFragment)
                 .commit());
 
-        GroceryDayFragment groceryDayFragment = new GroceryDayFragment();
-        groceryDayFragment.setOnNextPressedListener(v -> getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, dietaryPreferenceFragment)
-                .commit());
+        confirmFragment.setOnNextPressedListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -32,3 +38,6 @@ public class SignupFlowActivity extends AppCompatActivity {
     }
 }
 
+
+// Intent intent = new Intent(this, MainActivity.class);
+//startActivity(intent);
