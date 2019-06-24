@@ -7,14 +7,28 @@ import android.support.v7.app.AppCompatActivity;
 
 public class SignupFlowActivity extends AppCompatActivity {
 
+    private GroceryDayFragment groceryDayFragment;
+    private DietaryPreferenceFragment dietaryPreferenceFragment;
+    private ConfirmFragment confirmFragment;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_flow);
 
-        GroceryDayFragment groceryDayFragment = new GroceryDayFragment();
-        DietaryPreferenceFragment dietaryPreferenceFragment = new DietaryPreferenceFragment();
-        ConfirmFragment confirmFragment = new ConfirmFragment();
+        setupFragments();
+
+        //start activity with grocery day fragment.
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container, groceryDayFragment)
+                .commit();
+    }
+
+    private void setupFragments() {
+        groceryDayFragment = new GroceryDayFragment();
+        dietaryPreferenceFragment = new DietaryPreferenceFragment();
+        confirmFragment = new ConfirmFragment();
 
         groceryDayFragment.setOnNextPressedListener(v -> getSupportFragmentManager()
                 .beginTransaction()
@@ -31,13 +45,5 @@ public class SignupFlowActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, groceryDayFragment)
-                .commit();
     }
 }
-
-
-// Intent intent = new Intent(this, MainActivity.class);
-//startActivity(intent);
