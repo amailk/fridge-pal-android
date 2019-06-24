@@ -18,6 +18,7 @@
             android:layout_marginBottom="8dp"
             android:text="@string/confirm_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="onConfirmClicked"/>
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
