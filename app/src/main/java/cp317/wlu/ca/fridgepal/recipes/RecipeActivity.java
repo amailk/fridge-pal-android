@@ -1,4 +1,4 @@
-package cp317.wlu.ca.fridgepal;
+package cp317.wlu.ca.fridgepal.recipes;
 
 import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class RecipeActivity extends AppCompatActivity {

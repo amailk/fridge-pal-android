@@ -1,4 +1,4 @@
-package cp317.wlu.ca.fridgepal;
+package cp317.wlu.ca.fridgepal.recipes;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHolder> {

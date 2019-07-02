@@ -1,8 +1,6 @@
 package cp317.wlu.ca.fridgepal;
 
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -11,12 +9,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import cp317.wlu.ca.fridgepal.model.Recipe;
-import cp317.wlu.ca.fridgepal.repositories.RecipeRepository;
+import cp317.wlu.ca.fridgepal.fridge.FridgeFragment;
+import cp317.wlu.ca.fridgepal.grocerylist.GroceryListFragment;
+import cp317.wlu.ca.fridgepal.recipes.RecipesFragment;
 
 public class MainActivity extends AppCompatActivity {
 

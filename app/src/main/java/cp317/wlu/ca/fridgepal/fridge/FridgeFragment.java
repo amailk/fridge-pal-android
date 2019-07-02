@@ -1,4 +1,4 @@
-package cp317.wlu.ca.fridgepal;
+package cp317.wlu.ca.fridgepal.fridge;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import cp317.wlu.ca.fridgepal.R;
 
 public class FridgeFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package cp317.wlu.ca.fridgepal;
+package cp317.wlu.ca.fridgepal.recipes;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class RecipesFragment extends Fragment {

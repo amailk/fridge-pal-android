@@ -1,8 +1,11 @@
-package cp317.wlu.ca.fridgepal;
+package cp317.wlu.ca.fridgepal.signupflow;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import cp317.wlu.ca.fridgepal.MainActivity;
+import cp317.wlu.ca.fridgepal.R;
 
 
 public class SignupFlowActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package cp317.wlu.ca.fridgepal;
+package cp317.wlu.ca.fridgepal.fridge;
 
 import android.arch.lifecycle.ViewModel;
 
