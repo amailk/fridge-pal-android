@@ -1,9 +1,9 @@
 package cp317.wlu.ca.fridgepal;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +31,13 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         }
     }
 
-    private List<Recipe> mRecipes;
+    private List<Recipe> recipes;
+    private Context context;
 
-    public RecipesAdapter(List<Recipe> recipes) {
-        mRecipes = recipes;
+    public RecipesAdapter(List<Recipe> recipes, Context context) {
+        this.recipes = recipes;
+        this.context = context;
+
     }
 
     @Override
@@ -50,7 +53,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(RecipesAdapter.ViewHolder viewHolder, int position) {
-        Recipe recipe = mRecipes.get(position);
+        Recipe recipe = recipes.get(position);
 
         TextView textView = viewHolder.recipeTextView;
         textView.setText(recipe.getName());
@@ -59,14 +62,18 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         descTextView.setText(recipe.getDescription());
 
         ImageView imageDrawable = viewHolder.imageDrawable;
-        imageDrawable.setImageDrawable(recipe.getImage());
+        imageDrawable.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), recipe.getImage(), null));
 
-
+        viewHolder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, RecipeActivity.class);
+            intent.putExtra(RecipeActivity.EXTRA_RECIPE, recipes.get(position));
+            context.startActivity(intent);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mRecipes.size();
+        return recipes.size();
     }
 
 }
