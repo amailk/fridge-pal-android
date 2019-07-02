@@ -1,9 +1,7 @@
 package cp317.wlu.ca.fridgepal.signupflow;
-
-
+import cp317.wlu.ca.fridgepal.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
