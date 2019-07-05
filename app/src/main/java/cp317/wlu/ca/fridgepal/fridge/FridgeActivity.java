@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import cp317.wlu.ca.fridgepal.R;
+
 public class FridgeActivity extends AppCompatActivity
 {
     @Override

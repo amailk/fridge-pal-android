@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import cp317.wlu.ca.fridgepal.R;
+import cp317.wlu.ca.fridgepal.model.Category;
+import cp317.wlu.ca.fridgepal.model.Food;
+
 public class FridgeListFragment extends Fragment
 {
     private ArrayList<Category> categories = new ArrayList<>();

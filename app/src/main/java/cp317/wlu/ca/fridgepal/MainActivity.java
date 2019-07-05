@@ -94,13 +94,13 @@ public class MainActivity extends AppCompatActivity {
 
             switch (position) {
                 case 0:
-                    return FridgeFragment.newInstance();
+                    return new FridgeFragment();
                 case 1:
                     return RecipesFragment.newInstance();
                 case 2:
                     return GroceryListFragment.newInstance();
                 default:
-                    return FridgeFragment.newInstance();
+                    return new FridgeFragment();
             }
         }
 
