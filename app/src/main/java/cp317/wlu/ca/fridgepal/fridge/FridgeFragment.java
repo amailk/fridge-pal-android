@@ -1,35 +1,34 @@
 package cp317.wlu.ca.fridgepal.fridge;
 
-import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import cp317.wlu.ca.fridgepal.R;
 
-public class FridgeFragment extends Fragment {
-
-    private FridgeViewModel mViewModel;
-
-    public static FridgeFragment newInstance() {
-        return new FridgeFragment();
-    }
-
+public class FridgeFragment extends Fragment
+{
+    private Button viewContentsButton;
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fridge_fragment, container, false);
-    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        View v = inflater.inflate(R.layout.fridge_fragment_layout, container, false);
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(FridgeViewModel.class);
-        // TODO: Use the ViewModel
-    }
+        viewContentsButton = (Button) v.findViewById(R.id.view_contents_button);
+        viewContentsButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), FridgeListActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        return v;
+    }
 }
