@@ -37,4 +37,6 @@ public class DietaryPreferenceFragment extends Fragment {
     public void setOnNextPressedListener(OnNextPressedListener onNextPressedListener) {
         this.onNextPressedListener = onNextPressedListener;
     }
+
+
 }

@@ -15,6 +15,9 @@ import android.widget.Spinner;
  */
 public class GroceryDayFragment extends Fragment {
 
+
+    String text;
+
     interface OnNextPressedListener {
         void onNextPressed(View view);
     }
@@ -31,6 +34,7 @@ public class GroceryDayFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.days, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        text = spinner.getSelectedItem().toString();
 
         Button nextButton = view.findViewById(R.id.button_next);
         nextButton.setOnClickListener(onNextPressedListener::onNextPressed);
@@ -38,6 +42,14 @@ public class GroceryDayFragment extends Fragment {
     }
 
     public void setOnNextPressedListener(OnNextPressedListener onNextPressedListener) {
+
+
         this.onNextPressedListener = onNextPressedListener;
+    }
+
+    public ConfirmClass setGroceryDayText(ConfirmClass confirm){
+        confirm = new ConfirmClass(text, null);
+        //confirm.setmGroceryDay("nandani");
+        return confirm;
     }
 }
