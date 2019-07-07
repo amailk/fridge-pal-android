@@ -4,9 +4,15 @@ import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.stream.Collectors;
+
 import cp317.wlu.ca.fridgepal.R;
+import cp317.wlu.ca.fridgepal.model.Ingredient;
 import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class RecipeActivity extends AppCompatActivity {
@@ -23,9 +29,19 @@ public class RecipeActivity extends AppCompatActivity {
 
         TextView title = findViewById(R.id.title);
         title.setText(recipe.getName());
+
         ImageView image = findViewById(R.id.image);
         image.setImageDrawable(ResourcesCompat.getDrawable(getResources(), recipe.getImage(), null));
+
         TextView description = findViewById(R.id.description);
         description.setText(recipe.getDescription());
+
+        TextView ingredients = findViewById(R.id.ingredientTextVIew);
+        ingredients.setText(
+                recipe.getIngredients()
+                        .stream()
+                        .map(v -> v.getAmount() + " " + v.getQuantityType().toString() + " " + v.getName())
+                        .collect(Collectors.joining("\n"))
+        );
     }
 }
