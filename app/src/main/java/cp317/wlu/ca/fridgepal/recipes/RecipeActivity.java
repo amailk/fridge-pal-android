@@ -1,8 +1,13 @@
 package cp317.wlu.ca.fridgepal.recipes;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,12 +41,12 @@ public class RecipeActivity extends AppCompatActivity {
         TextView description = findViewById(R.id.description);
         description.setText(recipe.getDescription());
 
-        TextView ingredients = findViewById(R.id.ingredientTextVIew);
-        ingredients.setText(
-                recipe.getIngredients()
-                        .stream()
-                        .map(v -> v.getAmount() + " " + v.getQuantityType().toString() + " " + v.getName())
-                        .collect(Collectors.joining("\n"))
-        );
+        final RecyclerView ingredientsRecyclerView = findViewById(R.id.ingredient_recycler_view);
+
+        IngredientsAdapter adapter = new IngredientsAdapter(recipe.getIngredients(), this);
+        ingredientsRecyclerView.setAdapter(adapter);
+        ingredientsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
+
 }
