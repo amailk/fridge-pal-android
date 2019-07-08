@@ -24,7 +24,7 @@ import static java.sql.DriverManager.println;
 public class ConfirmFragment extends Fragment {
     TextView groceryText;
     TextView dietaryText;
-    //private ConfirmViewModel confirm;
+    private ConfirmViewModel viewModel;
 
     public ConfirmFragment() {
         // Required empty public constructor
@@ -44,11 +44,9 @@ public class ConfirmFragment extends Fragment {
 
       groceryText = view.findViewById(R.id.user_groceryDay);
 
-        //groceryText.setText(confirm.mGroceryDay);
-
        dietaryText = view.findViewById(R.id.user_dietary);
 
-                Button nextButton = view.findViewById(R.id.button4);
+       Button nextButton = view.findViewById(R.id.button4);
         nextButton.setOnClickListener(onNextPressedListener::onNextPressed);
         return view;
     }
@@ -56,35 +54,14 @@ public class ConfirmFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class).getmGroceryDayInp().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                groceryText.setText(s);
-            }
-        });
-
-        ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class).getmDietPrefInp().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                dietaryText.setText(s);
-            }
-        });
-        //ConfirmViewModel confirmViewModel = ViewModelProviders.of(this).get(ConfirmViewModel.class);
-
-        //observeInput(confirmViewModel);
+       viewModel = ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class);
+           groceryText.setText(viewModel.getmGroceryDayInp().getValue());
+           dietaryText.setText(viewModel.getmDietPrefInp().getValue());
     }
 
     public void setOnNextPressedListener(onNextPressedListener onNextPressedListener) {
         this.onNextPressedListener = onNextPressedListener;
     }
 
-    /*private void observeInput(ConfirmViewModel confirmViewModel){
-        confirmViewModel.mGroceryDayInp.observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                println(s);
-                //groceryText.setText(s);
-            }
-        });
-    }*/
+
 }

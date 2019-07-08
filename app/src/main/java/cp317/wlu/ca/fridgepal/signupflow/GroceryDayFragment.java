@@ -22,8 +22,9 @@ import static java.sql.DriverManager.println;
  */
 public class GroceryDayFragment extends Fragment {
 
-   // private  ConfirmViewModel confirmViewModel;
-   //String groceryString;
+
+    String gtext;
+    Spinner spinner;
 
     interface OnNextPressedListener {
         void onNextPressed(View view);
@@ -36,48 +37,24 @@ public class GroceryDayFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_grocery_day, container, false);
-        Spinner spinner = view.findViewById(R.id.spinner);
-        String gtext = spinner.getSelectedItem().toString();
+        spinner = view.findViewById(R.id.spinner);
+        gtext = spinner.getSelectedItem().toString();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.days, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-       // groceryString="";
-        /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                groceryString = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
-
-
         Button nextButton = view.findViewById(R.id.button_next);
-        nextButton.setOnClickListener(onNextPressedListener::onNextPressed);
+        nextButton.setOnClickListener(v -> {
+            ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class).setGroceryInput(spinner.getSelectedItem().toString());
+            onNextPressedListener.onNextPressed(v);
+        });
 
 
-        println(gtext);
         ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class).setGroceryInput(gtext);
 
         return view;
     }
-
-   /* @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        confirmViewModel = ViewModelProviders.of(this).get(ConfirmViewModel.class);
-        String grocerytext = "";
-        if(!text.isEmpty()){
-            grocerytext = text;
-        }
-        confirmViewModel.mGroceryDayInp.postValue(grocerytext);
-    }*/
 
     public void setOnNextPressedListener(OnNextPressedListener onNextPressedListener) {
 

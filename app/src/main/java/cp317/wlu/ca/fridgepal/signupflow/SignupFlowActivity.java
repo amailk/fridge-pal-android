@@ -41,23 +41,16 @@ public class SignupFlowActivity extends AppCompatActivity {
         mConfirmViewModel = ViewModelProviders.of(this).get(ConfirmViewModel.class);
         mConfirmViewModel.init();
 
-       // mConfirm.mGroceryDay = groceryDayFragment.text;
-
         groceryDayFragment.setOnNextPressedListener(v -> getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, dietaryPreferenceFragment)
                 .commit());
-
-       // mConfirm = new ConfirmViewModel("", "");
-        //setGroceryDayText
 
 
         dietaryPreferenceFragment.setOnNextPressedListener(v -> getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, confirmFragment)
                 .commit());
-
-       // System.out.printf("%s" , mConfirm.getmGroceryDay());
 
         confirmFragment.setOnNextPressedListener(v -> {
             Intent intent = new Intent(this, MainActivity.class);

@@ -37,26 +37,5 @@ public class ConfirmViewModel extends ViewModel {
     }
     public void setDietInput(String msg) {mDietPrefInp.setValue(msg);}
 
-    //public String mDietaryPref="";
 
-    /*public ConfirmViewModel(String mGroceryDay, String mDietaryPref) {
-        this.mGroceryDay = mGroceryDay;
-        this.mDietaryPref = mDietaryPref;
-    }
-
-    public String getmGroceryDay() {
-        return mGroceryDay;
-    }
-
-    public void setmGroceryDay(String mGroceryDay) {
-        this.mGroceryDay = mGroceryDay;
-    }
-
-    public String getmDietaryPref() {
-        return mDietaryPref;
-    }
-
-    public void setmDietaryPref(String mDietaryPref) {
-        this.mDietaryPref = mDietaryPref;
-    }*/
 }
