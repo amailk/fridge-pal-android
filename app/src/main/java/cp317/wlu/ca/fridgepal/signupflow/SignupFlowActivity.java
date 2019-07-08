@@ -1,5 +1,6 @@
 package cp317.wlu.ca.fridgepal.signupflow;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +14,13 @@ public class SignupFlowActivity extends AppCompatActivity {
     private GroceryDayFragment groceryDayFragment;
     private DietaryPreferenceFragment dietaryPreferenceFragment;
     private ConfirmFragment confirmFragment;
-    ConfirmViewModel mConfirm;
+    private ConfirmViewModel mConfirmViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_flow);
+
 
         setupFragments();
 
@@ -28,6 +30,7 @@ public class SignupFlowActivity extends AppCompatActivity {
                 .add(R.id.container, groceryDayFragment)
                 .commit();
 
+
     }
 
     private void setupFragments() {
@@ -35,6 +38,8 @@ public class SignupFlowActivity extends AppCompatActivity {
         dietaryPreferenceFragment = new DietaryPreferenceFragment();
         confirmFragment = new ConfirmFragment();
 
+        mConfirmViewModel = ViewModelProviders.of(this).get(ConfirmViewModel.class);
+        mConfirmViewModel.init();
 
        // mConfirm.mGroceryDay = groceryDayFragment.text;
 

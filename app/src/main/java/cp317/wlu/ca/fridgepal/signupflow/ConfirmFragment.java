@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import cp317.wlu.ca.fridgepal.R;
 
+import static java.sql.DriverManager.println;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +24,7 @@ import cp317.wlu.ca.fridgepal.R;
 public class ConfirmFragment extends Fragment {
     TextView groceryText;
     TextView dietaryText;
-    private ConfirmViewModel confirm;
+    //private ConfirmViewModel confirm;
 
     public ConfirmFragment() {
         // Required empty public constructor
@@ -54,21 +56,35 @@ public class ConfirmFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ConfirmViewModel confirmViewModel = ViewModelProviders.of(this).get(ConfirmViewModel.class);
+        ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class).getmGroceryDayInp().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                groceryText.setText(s);
+            }
+        });
 
-        observeInput(confirmViewModel);
+        ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class).getmDietPrefInp().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                dietaryText.setText(s);
+            }
+        });
+        //ConfirmViewModel confirmViewModel = ViewModelProviders.of(this).get(ConfirmViewModel.class);
+
+        //observeInput(confirmViewModel);
     }
 
     public void setOnNextPressedListener(onNextPressedListener onNextPressedListener) {
         this.onNextPressedListener = onNextPressedListener;
     }
 
-    private void observeInput(ConfirmViewModel confirmViewModel){
+    /*private void observeInput(ConfirmViewModel confirmViewModel){
         confirmViewModel.mGroceryDayInp.observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                groceryText.setText(s);
+                println(s);
+                //groceryText.setText(s);
             }
         });
-    }
+    }*/
 }
