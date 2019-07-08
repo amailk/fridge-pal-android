@@ -13,8 +13,12 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryLight"
-        >
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/colorPrimaryLight">
 
         <TextView
             android:id="@+id/name_textview"
@@ -24,7 +28,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:clickable="true"
             android:fontFamily="@font/montserrat"
+            android:onClick="onRecipeClicked"
             android:text="@string/textview"
             android:textColor="@color/colorSecondary"
             android:typeface="sans"
@@ -33,9 +39,7 @@
             app:layout_constraintHorizontal_bias="0.025"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            android:onClick="onRecipeClicked"
-            android:clickable="true"/>
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/recipe_image"

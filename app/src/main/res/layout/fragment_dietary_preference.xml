@@ -46,5 +46,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-
 </android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@ package cp317.wlu.ca.fridgepal.recipes;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -47,16 +48,22 @@ public class RecipesFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Recipe> recipes) {
                 String recipeString = "";
-                String recipeDesc = "";
+
                 Resources res = getContext().getResources();
                 Drawable recipeImage = ResourcesCompat.getDrawable(res, R.drawable.raspberry, null);
 
                 for (Recipe recipe : recipes) {
                     recipeString += recipe.getName() + "\n";
-                    recipeDesc += recipe.getDescription() + "\n";
 
                 }
-                RecipesAdapter adapter = new RecipesAdapter(recipes, getContext());
+                RecipesAdapter adapter = new RecipesAdapter(recipes, getContext(), new RecipesAdapter.OnRecipeSelectedListener() {
+                    @Override
+                    public void onRecipeSelected(Recipe recipe) {
+                        Intent intent = new Intent(getContext(), RecipeActivity.class);
+                        intent.putExtra(RecipeActivity.EXTRA_RECIPE, recipe);
+                        startActivity(intent);
+                    }
+                });
                 rvRecipes.setAdapter(adapter);
                 rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
             }
@@ -65,5 +72,4 @@ public class RecipesFragment extends Fragment {
         viewModel.fetchRecipes();
 
     }
-
 }

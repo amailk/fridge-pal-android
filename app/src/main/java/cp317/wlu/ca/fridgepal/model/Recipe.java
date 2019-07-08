@@ -3,18 +3,22 @@ package cp317.wlu.ca.fridgepal.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Recipe implements Parcelable {
     String name;
     String description;
-    @DrawableRes int image;
+    @DrawableRes
+    int image;
+    List<Ingredient> ingredients;
 
 
-    public Recipe(String name, String description, @DrawableRes int image) {
-
+    public Recipe(String name, String description, @DrawableRes int image, List<Ingredient> ingredients) {
         this.name = name;
         this.description = description;
         this.image = image;
+        this.ingredients = ingredients;
     }
 
     public String getName() {
@@ -29,10 +33,20 @@ public class Recipe implements Parcelable {
         return image;
     }
 
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
     protected Recipe(Parcel in) {
         name = in.readString();
         description = in.readString();
         image = in.readInt();
+        if (in.readByte() == 0x01) {
+            ingredients = new ArrayList<Ingredient>();
+            in.readList(ingredients, Ingredient.class.getClassLoader());
+        } else {
+            ingredients = null;
+        }
     }
 
     @Override
@@ -45,6 +59,12 @@ public class Recipe implements Parcelable {
         dest.writeString(name);
         dest.writeString(description);
         dest.writeInt(image);
+        if (ingredients == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(ingredients);
+        }
     }
 
     @SuppressWarnings("unused")

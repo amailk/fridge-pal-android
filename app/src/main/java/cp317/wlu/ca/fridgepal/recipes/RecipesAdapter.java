@@ -1,7 +1,6 @@
 package cp317.wlu.ca.fridgepal.recipes;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -32,12 +31,18 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         }
     }
 
+    public interface OnRecipeSelectedListener {
+        void onRecipeSelected(Recipe recipe);
+    }
+
     private List<Recipe> recipes;
     private Context context;
+    private OnRecipeSelectedListener onRecipeSelectedListener;
 
-    public RecipesAdapter(List<Recipe> recipes, Context context) {
+    public RecipesAdapter(List<Recipe> recipes, Context context, OnRecipeSelectedListener onRecipeSelectedListener) {
         this.recipes = recipes;
         this.context = context;
+        this.onRecipeSelectedListener = onRecipeSelectedListener;
 
     }
 
@@ -66,9 +71,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         imageDrawable.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), recipe.getImage(), null));
 
         viewHolder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, RecipeActivity.class);
-            intent.putExtra(RecipeActivity.EXTRA_RECIPE, recipes.get(position));
-            context.startActivity(intent);
+            onRecipeSelectedListener.onRecipeSelected(recipes.get(position));
         });
     }
 
