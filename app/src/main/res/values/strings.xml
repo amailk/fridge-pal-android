@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fridge Pal</string>
+    <string name="app_name">FRIDGE PAL</string>
     <string name="login" translatable="false">Login</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="tab_text_1">Fridge</string>

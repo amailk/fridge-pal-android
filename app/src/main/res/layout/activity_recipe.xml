@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".recipes.RecipeActivity" >
+    android:background="@color/colorAccent"
+    tools:context=".recipes.RecipeActivity">
 
     <ImageView
         android:id="@+id/image"
@@ -38,38 +39,38 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toTopOf="@+id/recipe_tabs"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/recipe_tabs"
-        android:layout_width="395dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabIndicatorColor="@color/colorAccent"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorGravity="top"
         app:tabRippleColor="@color/colorAccent"
-        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/colorPrimaryDark"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:tabTextColor="@color/colorPrimaryDark">
+        app:tabTextColor="@color/colorPrimary">
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ingredients" />
+            android:text="INGREDIENTS" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Instructions" />
+            android:text="INSTRUCTIONS" />
 
     </android.support.design.widget.TabLayout>
 </android.support.constraint.ConstraintLayout>
