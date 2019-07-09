@@ -1,7 +1,6 @@
 package cp317.wlu.ca.fridgepal.repositories.local;
 
 import android.content.res.Resources;
-import android.support.v4.content.res.ResourcesCompat;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,17 +1,14 @@
 package cp317.wlu.ca.fridgepal.recipes;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
-import java.util.logging.Logger;
 
 import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Ingredient;

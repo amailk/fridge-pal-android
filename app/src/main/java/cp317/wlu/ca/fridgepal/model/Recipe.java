@@ -2,7 +2,7 @@ package cp317.wlu.ca.fridgepal.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 import java.util.ArrayList;
 import java.util.List;
 

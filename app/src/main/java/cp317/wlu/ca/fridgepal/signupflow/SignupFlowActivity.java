@@ -1,9 +1,11 @@
 package cp317.wlu.ca.fridgepal.signupflow;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import cp317.wlu.ca.fridgepal.MainActivity;
 import cp317.wlu.ca.fridgepal.R;
@@ -15,6 +17,8 @@ public class SignupFlowActivity extends AppCompatActivity {
     private DietaryPreferenceFragment dietaryPreferenceFragment;
     private ConfirmFragment confirmFragment;
     private ConfirmViewModel mConfirmViewModel;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,6 @@ public class SignupFlowActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.container, groceryDayFragment)
                 .commit();
-
 
     }
 

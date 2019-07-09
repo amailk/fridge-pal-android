@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "685323896721",
+    "firebase_url": "https://fridge-pal-cp317.firebaseio.com",
+    "project_id": "fridge-pal-cp317",
+    "storage_bucket": "fridge-pal-cp317.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685323896721:android:75d7c4e203d916ab",
+        "android_client_info": {
+          "package_name": "cp317.wlu.ca.fridgepal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685323896721-coqpnput1f08q2iarv8a16b2okj8s2tf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9N3vVu6er4OOCqJCR_Nsr_Q5Ou70feDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685323896721-coqpnput1f08q2iarv8a16b2okj8s2tf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
