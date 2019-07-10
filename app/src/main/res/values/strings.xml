@@ -24,9 +24,8 @@
         <item> Vegan</item>
         <item> Gluten Free</item>
         <item> Pescetarians</item>
-
-
     </string-array>
+
     <string name="nextToDiet_button">Next</string>
     <string name="nextToConfirm_button">Next</string>
     <!-- TODO: Remove or change this placeholder text -->
