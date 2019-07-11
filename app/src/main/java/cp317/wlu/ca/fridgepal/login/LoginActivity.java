@@ -28,7 +28,6 @@ import cp317.wlu.ca.fridgepal.MainActivity;
 import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.signupflow.SignupFlowActivity;
 
-
 public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 9001;
@@ -60,13 +59,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (viewModel.isAlreadyAuthenticated()) {
-            if (viewModel.hasUserCompletedSignUpFlow()) {
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-            } else {
-                Intent intent = new Intent(this, SignupFlowActivity.class);
-                startActivity(intent);
-            }
+            viewModel.userAuthenticated();
+            handleAuthenticatedUser();
         } else {
             authenticate();
         }
@@ -98,14 +92,8 @@ public class LoginActivity extends AppCompatActivity {
                             //Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = auth.getCurrentUser();
-                            viewModel.setAuthenticatedUser(user);
-                            if (viewModel.hasUserCompletedSignUpFlow()) {
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            } else {
-                                Intent intent = new Intent(LoginActivity.this, SignupFlowActivity.class);
-                                startActivity(intent);
-                            }
+                            viewModel.userAuthenticated();
+                            handleAuthenticatedUser();
                         } else {
                             //If Sign in fails, display a message to the user
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -118,5 +106,19 @@ public class LoginActivity extends AppCompatActivity {
     private void authenticate() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void handleAuthenticatedUser() {
+        viewModel.hasUserCompletedSignUpFlow(alreadySignedUp -> {
+            if (alreadySignedUp) {
+                Log.d(TAG, "User has completed sign up. Going to MainActivity");
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            } else {
+                Log.d(TAG, "User still needs to complete sign up. Going to SignupFlowActivity");
+                Intent intent = new Intent(this, SignupFlowActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
