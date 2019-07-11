@@ -1,5 +1,6 @@
 package cp317.wlu.ca.fridgepal.fridge;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Category;
 import cp317.wlu.ca.fridgepal.model.Food;
+import cp317.wlu.ca.fridgepal.model.FoodActivity;
 
 public class FridgeListFragment extends Fragment
 {
@@ -68,13 +71,22 @@ public class FridgeListFragment extends Fragment
         }
     }
 
-    private class ItemHolder2 extends RecyclerView.ViewHolder
+    private class ItemHolder2 extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private TextView foodName;
         public ItemHolder2(LayoutInflater inflater, ViewGroup parent)
         {
             super(inflater.inflate(R.layout.fridge_list_item_layout_2, parent, false));
+            itemView.setOnClickListener(this);
             foodName = (TextView) itemView.findViewById(R.id.food_name);
+        }
+
+        @Override
+        public void onClick(View view)
+        {
+            //Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), FoodActivity.class);
+            startActivity(intent);
         }
     }
 
