@@ -46,6 +46,19 @@
     <string name="expiry_date_label">Expiry Date</string>
     <string name="is_favorite">Favorite</string>
     <string name="delete_food_label">Delete Food</string>
+    <string name="add_food_name">Add food name</string>
+    <string name="add_food_name_hint">Please type in the food name.</string>
+    <string name="select_food_category">Select Food Category</string>
+    <string-array name="food_category_list">
+        <item>Meat</item>
+        <item>Dairy</item>
+        <item>Fruit</item>
+        <item>Vegetable</item>
+    </string-array>
+    <string name="date_of_purchase">Select Date of Purchase</string>
+    <string name="date_of_expiry">Select Date of Expiration</string>
+    <string name="add_food_button">Add Food</string>
+
     <string name="confirm_grocery_text">Your Grocery day is </string>
     <string name="confirm_dietary_text">Your preferred Dietary is </string>
 
