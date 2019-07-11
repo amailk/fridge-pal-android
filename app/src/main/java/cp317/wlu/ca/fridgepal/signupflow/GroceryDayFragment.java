@@ -1,7 +1,10 @@
 package cp317.wlu.ca.fridgepal.signupflow;
 import cp317.wlu.ca.fridgepal.R;
+
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,10 @@ import android.widget.Spinner;
  */
 public class GroceryDayFragment extends Fragment {
 
+
+    String gtext;
+    Spinner spinner;
+
     interface OnNextPressedListener {
         void onNextPressed(View view);
     }
@@ -26,18 +33,29 @@ public class GroceryDayFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_grocery_day, container, false);
-        Spinner spinner = view.findViewById(R.id.spinner);
+        spinner = view.findViewById(R.id.spinner);
+        gtext = spinner.getSelectedItem().toString();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.days, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
         Button nextButton = view.findViewById(R.id.button_next);
-        nextButton.setOnClickListener(onNextPressedListener::onNextPressed);
+        nextButton.setOnClickListener(v -> {
+            ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class).setGroceryInput(spinner.getSelectedItem().toString());
+            onNextPressedListener.onNextPressed(v);
+        });
+
+
+        ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class).setGroceryInput(gtext);
+
         return view;
     }
 
     public void setOnNextPressedListener(OnNextPressedListener onNextPressedListener) {
+
         this.onNextPressedListener = onNextPressedListener;
     }
+
+
 }

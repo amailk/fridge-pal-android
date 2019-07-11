@@ -1,8 +1,10 @@
 package cp317.wlu.ca.fridgepal;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import cp317.wlu.ca.fridgepal.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

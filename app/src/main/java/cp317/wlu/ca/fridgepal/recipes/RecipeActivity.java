@@ -1,8 +1,14 @@
 package cp317.wlu.ca.fridgepal.recipes;
 
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +19,8 @@ public class RecipeActivity extends AppCompatActivity {
 
     public static final String EXTRA_RECIPE = "extra_recipe";
     private Recipe recipe;
+    private ViewPager viewPager;
+    private RecipesViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +29,47 @@ public class RecipeActivity extends AppCompatActivity {
 
         recipe = getIntent().getExtras().getParcelable(EXTRA_RECIPE);
 
+        viewModel = ViewModelProviders.of(this).get(RecipesViewModel.class);
+        viewModel.setSelectedRecipe(recipe);
+
         TextView title = findViewById(R.id.title);
         title.setText(recipe.getName());
+
         ImageView image = findViewById(R.id.image);
         image.setImageDrawable(ResourcesCompat.getDrawable(getResources(), recipe.getImage(), null));
-        TextView description = findViewById(R.id.description);
-        description.setText(recipe.getDescription());
+
+        viewPager = findViewById(R.id.container);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        TabLayout tabLayout = findViewById(R.id.recipe_tabs);
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+
+        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    }
+
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+
+            switch (position) {
+                case 0:
+                    return IngredientsFragment.newInstance();
+                case 1:
+                    return InstructionsFragment.newInstance();
+                default:
+                    return IngredientsFragment.newInstance();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
     }
 }

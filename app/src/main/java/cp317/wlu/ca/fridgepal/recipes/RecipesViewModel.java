@@ -1,9 +1,9 @@
 package cp317.wlu.ca.fridgepal.recipes;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -16,6 +16,8 @@ public class RecipesViewModel extends AndroidViewModel {
     private final RecipeRepository recipeRepository;
     private MutableLiveData<List<Recipe>> recipeLiveData = new MutableLiveData<>();
 
+    private MutableLiveData<Recipe> selectedRecipeLiveData = new MutableLiveData<>();
+
     RecipesViewModel(Application application){
         super(application);
         recipeRepository = new LocalRecipeRepository(application.getResources());
@@ -27,5 +29,13 @@ public class RecipesViewModel extends AndroidViewModel {
 
     public void fetchRecipes() {
         recipeLiveData.setValue(recipeRepository.getRecipes());
+    }
+
+    public LiveData<Recipe> getSelectedRecipeLiveData() {
+        return selectedRecipeLiveData;
+    }
+
+    public void setSelectedRecipe(Recipe recipe) {
+        selectedRecipeLiveData.setValue(recipe);
     }
 }

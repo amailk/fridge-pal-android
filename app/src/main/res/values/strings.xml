@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fridge Pal</string>
+    <string name="app_name">FRIDGE PAL</string>
     <string name="login" translatable="false">Login</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="tab_text_1">Fridge</string>
@@ -18,6 +18,14 @@
         <item> Saturday</item>
 
     </string-array>
+
+    <string-array name="diet">
+        <item> Vegetarian</item>
+        <item> Vegan</item>
+        <item> Gluten Free</item>
+        <item> Pescetarians</item>
+    </string-array>
+
     <string name="nextToDiet_button">Next</string>
     <string name="nextToConfirm_button">Next</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -30,6 +38,7 @@
     <string name="diet_text">What\'s your Dietary Preference?</string>
     <string name="grocery_text">What\'s your Grocery Day?</string>
 
+
     <!-- Fridge & Food Assets -->
     <string name="food_name_label">Food Name</string>
     <string name="food_category_label">Food Category</string>
@@ -37,4 +46,8 @@
     <string name="expiry_date_label">Expiry Date</string>
     <string name="is_favorite">Favorite</string>
     <string name="delete_food_label">Delete Food</string>
+    <string name="confirm_grocery_text">Your Grocery day is </string>
+    <string name="confirm_dietary_text">Your preferred Dietary is </string>
+
 </resources>
+
