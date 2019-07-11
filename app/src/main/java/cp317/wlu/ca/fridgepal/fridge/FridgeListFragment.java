@@ -30,7 +30,14 @@ public class FridgeListFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fridge_list_fragment_layout, container,false);
 
+        categories = FoodStorage.get(getActivity()).getCategories();
+
+        //Food f = new Food("Tuna");
+        //f.setFoodCategory("Meat");
+
+        //FoodStorage.get(getActivity()).addFood(f);
         // for testing
+        /*
         Category meat = new Category("Meat");
         Category dairy = new Category("Dairy");
         Category fruit = new Category("Fruit");
@@ -48,7 +55,7 @@ public class FridgeListFragment extends Fragment
         categories.add(meat);
         categories.add(dairy);
         categories.add(fruit);
-        categories.add(vegetable);
+        categories.add(vegetable);*/
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.fridge_list_fragment_layout);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -57,6 +64,13 @@ public class FridgeListFragment extends Fragment
         mRecyclerView.setAdapter(mAdapter);
 
         return v;
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mAdapter.notifyDataSetChanged();
     }
 
     private class ItemHolder extends RecyclerView.ViewHolder
