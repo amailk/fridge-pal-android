@@ -20,10 +20,9 @@ import cp317.wlu.ca.fridgepal.R;
  */
 public class DietaryPreferenceFragment extends Fragment {
 
-    Spinner spinner;
-    String gtext;
+    private SignupFlowViewModel viewModel;
 
-    interface OnNextPressedListener {
+    public interface OnNextPressedListener {
         void onNextPressed(View view);
     }
 
@@ -32,11 +31,12 @@ public class DietaryPreferenceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        viewModel = ViewModelProviders.of(getActivity()).get(SignupFlowViewModel.class);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dietary_preference, container, false);
 
-        spinner = view.findViewById(R.id.spinnerDiet);
-        gtext = spinner.getSelectedItem().toString();
+        Spinner spinner = view.findViewById(R.id.spinnerDiet);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.diet, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -44,20 +44,14 @@ public class DietaryPreferenceFragment extends Fragment {
 
         Button nextButton = view.findViewById(R.id.button_nextC);
         nextButton.setOnClickListener(v -> {
-            ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class).setDietInput(spinner.getSelectedItem().toString());
+            viewModel.setDietaryPreference(spinner.getSelectedItem().toString());
             onNextPressedListener.onNextPressed(v);
         });
-
-        ViewModelProviders.of(getActivity()).get(ConfirmViewModel.class).setDietInput(gtext);
 
         return view;
     }
 
     public void setOnNextPressedListener(OnNextPressedListener onNextPressedListener) {
-
         this.onNextPressedListener = onNextPressedListener;
-
     }
-
-
 }
