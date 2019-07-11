@@ -37,7 +37,17 @@
     <string name="confirm_button">Confirm</string>
     <string name="diet_text">What\'s your Dietary Preference?</string>
     <string name="grocery_text">What\'s your Grocery Day?</string>
+
+
+    <!-- Fridge & Food Assets -->
+    <string name="food_name_label">Food Name</string>
+    <string name="food_category_label">Food Category</string>
+    <string name="date_added_label">Date Added</string>
+    <string name="expiry_date_label">Expiry Date</string>
+    <string name="is_favorite">Favorite</string>
+    <string name="delete_food_label">Delete Food</string>
     <string name="confirm_grocery_text">Your Grocery day is </string>
     <string name="confirm_dietary_text">Your preferred Dietary is </string>
 
 </resources>
+

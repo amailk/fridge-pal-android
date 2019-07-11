@@ -74,18 +74,19 @@ public class FridgeListFragment extends Fragment
     private class ItemHolder2 extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private TextView foodName;
+        private Food foodObj;
         public ItemHolder2(LayoutInflater inflater, ViewGroup parent)
         {
             super(inflater.inflate(R.layout.fridge_list_item_layout_2, parent, false));
             itemView.setOnClickListener(this);
             foodName = (TextView) itemView.findViewById(R.id.food_name);
         }
-
         @Override
         public void onClick(View view)
         {
             //Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), FoodActivity.class);
+            Intent intent = FoodActivity.newIntent(getActivity(), foodObj.getFoodName());
+            //intent.putExtra("arg_food_name", foodObj.getFoodName());
             startActivity(intent);
         }
     }
@@ -136,6 +137,7 @@ public class FridgeListFragment extends Fragment
         public void onBindViewHolder(ItemHolder2 holder, int position)
         {
             String s = mFoods.get(position).getFoodName();
+            holder.foodObj = mFoods.get(position);
             holder.foodName.setText(s);
         }
         @Override
