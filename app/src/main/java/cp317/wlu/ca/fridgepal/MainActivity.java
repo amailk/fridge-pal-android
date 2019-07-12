@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import cp317.wlu.ca.fridgepal.fridge.FridgeFragment;
 import cp317.wlu.ca.fridgepal.grocerylist.GroceryListFragment;
 import cp317.wlu.ca.fridgepal.recipes.RecipesFragment;
+import cp317.wlu.ca.fridgepal.settings.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
