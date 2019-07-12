@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -35,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleSignInClient googleSignInClient;
 
     private LoginViewModel viewModel;
+    private ProgressBar progressBar;
+    private Button loginButton;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -45,6 +50,12 @@ public class LoginActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
 
+        progressBar = findViewById(R.id.progress_bar);
+        loginButton = findViewById(R.id.login_button);
+        loginButton.setOnClickListener(v -> {
+            authenticate();
+        });
+
         //Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -53,18 +64,20 @@ public class LoginActivity extends AppCompatActivity {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso);
 
+        Log.d(TAG, "onCreate");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart");
         if (viewModel.isAlreadyAuthenticated()) {
+            Log.d(TAG, "onStart: user already authenticated");
             viewModel.userAuthenticated();
             handleAuthenticatedUser();
         } else {
-            authenticate();
+            Log.d(TAG, "onStart: user not authenticated");
         }
-
     }
 
     @Override
@@ -95,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                             viewModel.userAuthenticated();
                             handleAuthenticatedUser();
                         } else {
+                            isInProgress(false);
                             //If Sign in fails, display a message to the user
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Snackbar.make(findViewById(R.id.main_content), "Authentication Failed", Snackbar.LENGTH_SHORT).show();
@@ -104,11 +118,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void authenticate() {
+        isInProgress(true);
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     private void handleAuthenticatedUser() {
+        isInProgress(true);
         viewModel.hasUserCompletedSignUpFlow(alreadySignedUp -> {
             if (alreadySignedUp) {
                 Log.d(TAG, "User has completed sign up. Going to MainActivity");
@@ -120,5 +136,10 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void isInProgress(boolean inProgress) {
+        loginButton.setVisibility(inProgress ? View.INVISIBLE : View.VISIBLE);
+        progressBar.setVisibility(inProgress ? View.VISIBLE : View.INVISIBLE);
     }
 }
