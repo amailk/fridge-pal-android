@@ -62,5 +62,43 @@
     <string name="confirm_grocery_text">Your Grocery day is </string>
     <string name="confirm_dietary_text">Your preferred Dietary is </string>
 
+    <string name="grocery_day_title">Grocery Day</string>
+
+    <string-array name="pref_days_entries">
+        <item> Sunday</item>
+        <item> Monday</item>
+        <item> Tuesday</item>
+        <item> Wednesday</item>
+        <item> Thursday</item>
+        <item> Friday</item>
+        <item> Saturday</item>
+
+    </string-array>
+
+    <string-array name="pref_days_values">
+        <item> Sunday</item>
+        <item> Monday</item>
+        <item> Tuesday</item>
+        <item> Wednesday</item>
+        <item> Thursday</item>
+        <item> Friday</item>
+        <item> Saturday</item>
+
+    </string-array>
+
+    <string-array name="pref_diet_entries">
+        <item> Vegetarian</item>
+        <item> Vegan</item>
+        <item> Gluten Free</item>
+        <item> Pescetarians</item>
+    </string-array>
+
+    <string-array name="pref_diet_values">
+        <item> Vegetarian</item>
+        <item> Vegan</item>
+        <item> Gluten Free</item>
+        <item> Pescetarians</item>
+    </string-array>
+
 </resources>
 

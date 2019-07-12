@@ -18,6 +18,7 @@ import android.widget.TextView;
 import cp317.wlu.ca.fridgepal.R;
 
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
