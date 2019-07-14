@@ -25,4 +25,8 @@ public class Category
     {
         return foods;
     }
+
+    public void clear() {
+        foods.clear();
+    }
 }

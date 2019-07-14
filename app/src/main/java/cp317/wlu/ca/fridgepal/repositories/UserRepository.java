@@ -58,4 +58,8 @@ public class UserRepository {
             }
         });
     }
+
+    public FirebaseUser getUser() {
+        return user;
+    }
 }

@@ -3,6 +3,7 @@ package cp317.wlu.ca.fridgepal.fridge;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,18 +21,24 @@ import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Category;
 import cp317.wlu.ca.fridgepal.model.Food;
 import cp317.wlu.ca.fridgepal.model.FoodActivity;
+import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 
 public class FridgeListFragment extends Fragment {
     private ArrayList<Category> categories = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
     private ItemAdapter mAdapter;
+    private FoodRepository foodRepository;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        foodRepository = FoodRepository.getInstance();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fridge_list_fragment_layout, container, false);
-
-        categories = FoodStorage.getInstance().getCategories();
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -43,6 +50,10 @@ public class FridgeListFragment extends Fragment {
         addButon.setOnClickListener( v -> {
             Intent intent = new Intent(getActivity(), AddFoodActivity.class);
             startActivity(intent);
+        });
+
+        foodRepository.setDataLoadedListener(() -> {
+            mAdapter.setCategories(foodRepository.getCategories());
         });
 
         return view;
@@ -78,8 +89,8 @@ public class FridgeListFragment extends Fragment {
         @Override
         public void onClick(View view) {
             //Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
-            Intent intent = FoodActivity.newIntent(getActivity(), foodObj.getFoodName());
-            //intent.putExtra("arg_food_name", foodObj.getFoodName());
+            Intent intent = FoodActivity.newIntent(getActivity(), foodObj.getName());
+            //intent.putExtra("arg_food_name", foodObj.getName());
             startActivity(intent);
         }
     }
@@ -106,6 +117,11 @@ public class FridgeListFragment extends Fragment {
             holder.foodRecyclerView.setAdapter(adapter2);
         }
 
+        public void setCategories(ArrayList<Category> categories) {
+            this.mCategories = categories;
+            this.notifyDataSetChanged();
+        }
+
         @Override
         public int getItemCount() {
             return mCategories.size();
@@ -127,7 +143,7 @@ public class FridgeListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ItemHolder2 holder, int position) {
-            String s = mFoods.get(position).getFoodName();
+            String s = mFoods.get(position).getName();
             holder.foodObj = mFoods.get(position);
             holder.foodName.setText(s);
         }

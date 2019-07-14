@@ -1,76 +1,56 @@
 package cp317.wlu.ca.fridgepal.model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.Date;
-import java.util.UUID;
 
-public class Food
-{
-    private UUID foodId;
-    private String foodName;
-    private Date dateAdded;
-    private Date expiryDate;
-    private Boolean isPriority;
-    private Boolean isFavorite;
-    private String foodCategory;
+@IgnoreExtraProperties
+public class Food {
+    private String name;
+    private String addedDate;
+    private String expiryDate;
+    private String category;
 
-    // the constructor should have String param category
-    public Food(String name)
-    {
-        foodId = UUID.randomUUID();
-        foodName = name;
-        dateAdded = new Date();
-        isFavorite = false;
-        //foodCategory = category;
+    public Food() {
+        // Default constructor required for Firebase
     }
 
-    public UUID getFoodId()
-    {
-        return foodId;
+    public Food(String name, String category, String expiryDate) {
+        this.name = name;
+        this.category = category;
+        this.expiryDate = expiryDate;
+        this.addedDate = new Date().toString();
     }
 
-    public String getFoodName()
-    {
-        return foodName;
+    public String getName() {
+        return name;
     }
 
-    public void setExpiryDate(Date date)
-    {
-        expiryDate = date;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Date getExpiryDate()
-    {
+    public String getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(String addedDate) {
+        this.addedDate = addedDate;
+    }
+
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setIsFavorite(Boolean favorite)
-    {
-        isFavorite = favorite;
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
     }
 
-    public Boolean getIsFavorite()
-    {
-        return isFavorite;
+    public String getCategory() {
+        return category;
     }
 
-    public void setFoodCategory(String category)
-    {
-        foodCategory = category;
-    }
-
-    public String getFoodCategory()
-    {
-        return foodCategory;
-    }
-
-    private void setIsPriority(Date date)
-    {
-        long diff = expiryDate.getTime() - date.getTime();
-    }
-
-    public Boolean getIsPriority()
-    {
-        // perform calculation...
-        return isPriority;
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

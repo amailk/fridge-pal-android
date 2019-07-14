@@ -19,12 +19,11 @@ import java.util.Date;
 
 import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Food;
+import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 
-public class AddFoodFragment extends Fragment
-{
+public class AddFoodFragment extends Fragment {
     private EditText mFoodName;
     private Spinner mFoodCategory;
-    private DatePicker mPurchaseDate;
     private DatePicker mExpiryDate;
     private Button mAddButton;
 
@@ -34,25 +33,25 @@ public class AddFoodFragment extends Fragment
     private Date expiryDate;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.add_food_fragment_layout, container, false);
 
-        mFoodName = (EditText) v.findViewById(R.id.added_food_name);
-        mFoodCategory = (Spinner) v.findViewById(R.id.added_food_category);
-        mPurchaseDate = (DatePicker) v.findViewById(R.id.added_food_purchase_date);
-        mExpiryDate = (DatePicker) v.findViewById(R.id.added_food_expiration_date);
-        mAddButton = (Button) v.findViewById(R.id.added_food_add_button);
+        mFoodName = v.findViewById(R.id.added_food_name);
+        mFoodCategory = v.findViewById(R.id.added_food_category);
+        mExpiryDate = v.findViewById(R.id.added_food_expiration_date);
+        mAddButton = v.findViewById(R.id.added_food_add_button);
 
         mFoodName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
+
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 foodName = charSequence.toString();
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -71,8 +70,6 @@ public class AddFoodFragment extends Fragment
             }
         });
 
-        //foodCategory = mFoodCategory.getSelectedItem().toString();
-
         int day, month, year;
 
         day = mExpiryDate.getDayOfMonth();
@@ -83,18 +80,11 @@ public class AddFoodFragment extends Fragment
         c2.set(year, month, day);
         expiryDate = c2.getTime();
 
-        mAddButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Food food = new Food(foodName);
-                food.setFoodCategory(foodCategory);
-                food.setExpiryDate(expiryDate);
+        mAddButton.setOnClickListener(view -> {
+            Food food = new Food(foodName, foodCategory, expiryDate.toString());
 
-                FoodStorage.getInstance().addFood(food);
-                getActivity().finish();
-            }
+            FoodRepository.getInstance().addFood(food);
+            getActivity().finish();
         });
 
         return v;
