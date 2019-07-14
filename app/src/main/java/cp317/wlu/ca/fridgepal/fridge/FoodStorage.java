@@ -1,29 +1,23 @@
 package cp317.wlu.ca.fridgepal.fridge;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 
 import cp317.wlu.ca.fridgepal.model.Category;
 import cp317.wlu.ca.fridgepal.model.Food;
 
-public class FoodStorage
-{
+public class FoodStorage {
     private static FoodStorage sFoodStorage;
 
     private ArrayList<Category> categories;
 
-    public static FoodStorage get(Context context)
-    {
-        if(sFoodStorage == null)
-        {
-            sFoodStorage = new FoodStorage(context);
+    public static FoodStorage getInstance() {
+        if (sFoodStorage == null) {
+            sFoodStorage = new FoodStorage();
         }
         return sFoodStorage;
     }
 
-    private FoodStorage(Context context)
-    {
+    private FoodStorage() {
         categories = new ArrayList<>();
 
         Category meat = new Category("Meat");
@@ -31,14 +25,19 @@ public class FoodStorage
         Category fruit = new Category("Fruit");
         Category vegetable = new Category("Vegetable");
 
-        for(int i = 0; i < 10; ++i)
-        {
-            Food f = new Food("Food number " + i);
-            meat.addFood(f);
-            dairy.addFood(f);
-            fruit.addFood(f);
-            vegetable.addFood(f);
-        }
+        meat.addFood(new Food("Chicken Breast"));
+        meat.addFood(new Food("Bacon"));
+        meat.addFood(new Food("Ground Beef"));
+
+        dairy.addFood(new Food("Butter"));
+        dairy.addFood(new Food("Milk"));
+
+
+        fruit.addFood(new Food("Apple"));
+        fruit.addFood(new Food("Orange"));
+
+        vegetable.addFood(new Food("Broccoli"));
+        vegetable.addFood(new Food("Cucumber"));
 
         categories.add(meat);
         categories.add(dairy);
@@ -46,17 +45,13 @@ public class FoodStorage
         categories.add(vegetable);
     }
 
-    public ArrayList<Category> getCategories()
-    {
+    public ArrayList<Category> getCategories() {
         return categories;
     }
 
-    public void addFood(Food food)
-    {
-        for(Category cats: categories)
-        {
-            if(cats.getCategoryName().equals(food.getFoodCategory()))
-            {
+    public void addFood(Food food) {
+        for (Category cats : categories) {
+            if (cats.getCategoryName().equals(food.getFoodCategory())) {
                 cats.addFood(food);
                 break;
             }

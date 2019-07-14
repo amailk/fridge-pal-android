@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cp317.wlu.ca.fridgepal.fridge.FridgeFragment;
+import cp317.wlu.ca.fridgepal.fridge.FridgeListFragment;
 import cp317.wlu.ca.fridgepal.grocerylist.GroceryListFragment;
 import cp317.wlu.ca.fridgepal.recipes.RecipesFragment;
 import cp317.wlu.ca.fridgepal.settings.SettingsActivity;
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (position) {
                 case 0:
-                    return new FridgeFragment();
+                    return new FridgeListFragment();
                 case 1:
                     return RecipesFragment.newInstance();
                 case 2:

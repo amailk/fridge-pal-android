@@ -92,7 +92,7 @@ public class AddFoodFragment extends Fragment
                 food.setFoodCategory(foodCategory);
                 food.setExpiryDate(expiryDate);
 
-                FoodStorage.get(getActivity()).addFood(food);
+                FoodStorage.getInstance().addFood(food);
                 getActivity().finish();
             }
         });
