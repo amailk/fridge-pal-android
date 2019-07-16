@@ -58,6 +58,7 @@ public class FoodRepository {
 
                 for (DataSnapshot foodSnapshot : dataSnapshot.getChildren()) {
                     Food food = foodSnapshot.getValue(Food.class);
+                    food.setUuid(foodSnapshot.getKey());
                     fridge.get(food.getCategory()).addFood(food);
                 }
 

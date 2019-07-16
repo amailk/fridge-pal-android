@@ -1,5 +1,6 @@
 package cp317.wlu.ca.fridgepal.model;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.Date;
@@ -10,6 +11,8 @@ public class Food {
     private String addedDate;
     private String expiryDate;
     private String category;
+    @Exclude
+    private String Uuid;
 
     public Food() {
         // Default constructor required for Firebase
@@ -52,5 +55,15 @@ public class Food {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Exclude
+    public String getUuid() {
+        return Uuid;
+    }
+
+    @Exclude
+    public void setUuid(String uuid) {
+        Uuid = uuid;
     }
 }
