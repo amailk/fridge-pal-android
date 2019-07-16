@@ -11,10 +11,12 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
 
 import cp317.wlu.ca.fridgepal.fridge.FridgeFragment;
 import cp317.wlu.ca.fridgepal.grocerylist.GroceryListFragment;
 import cp317.wlu.ca.fridgepal.recipes.RecipesFragment;
+import
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        Intent i = new Intent(this, PreferencesActivity.class);
+        startActivity(i);
         return true;
     }
 
