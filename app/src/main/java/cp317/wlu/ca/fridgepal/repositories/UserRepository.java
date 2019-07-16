@@ -10,10 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 import cp317.wlu.ca.fridgepal.model.User;
 
@@ -29,8 +26,8 @@ public class UserRepository {
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
-    public static UserRepository getInstance()  {
-        if(instance == null) {
+    public static UserRepository getInstance() {
+        if (instance == null) {
             instance = new UserRepository();
         }
         return instance;
@@ -49,7 +46,7 @@ public class UserRepository {
         databaseReference.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                result.accept(dataSnapshot != null);
+                result.accept(dataSnapshot.hasChildren());
             }
 
             @Override
