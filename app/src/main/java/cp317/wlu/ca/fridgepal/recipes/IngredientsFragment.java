@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cp317.wlu.ca.fridgepal.R;
+import cp317.wlu.ca.fridgepal.model.IngredientRecipe;
 import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class IngredientsFragment extends Fragment {
@@ -20,7 +21,7 @@ public class IngredientsFragment extends Fragment {
         return new IngredientsFragment();
     }
 
-    private Recipe recipe;
+    private IngredientRecipe recipe;
     private RecipesViewModel viewModel;
 
 
@@ -40,8 +41,9 @@ public class IngredientsFragment extends Fragment {
 
         final RecyclerView ingredientsRecyclerView = view.findViewById(R.id.ingredient_recycler_view);
 
-        IngredientsAdapter adapter = new IngredientsAdapter(recipe.getIngredients(), getContext());
-        ingredientsRecyclerView.setAdapter(adapter);
-        ingredientsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        // TODO: get ingredients from recipe
+//        IngredientsAdapter adapter = new IngredientsAdapter(recipe.getIngredients(), getContext());
+//        ingredientsRecyclerView.setAdapter(adapter);
+//        ingredientsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

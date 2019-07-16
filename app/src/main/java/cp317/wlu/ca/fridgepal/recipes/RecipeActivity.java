@@ -3,6 +3,8 @@ package cp317.wlu.ca.fridgepal.recipes;
 import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
+import com.squareup.picasso.Picasso;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -13,12 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cp317.wlu.ca.fridgepal.R;
+import cp317.wlu.ca.fridgepal.model.IngredientRecipe;
 import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class RecipeActivity extends AppCompatActivity {
 
     public static final String EXTRA_RECIPE = "extra_recipe";
-    private Recipe recipe;
+    private IngredientRecipe recipe;
     private ViewPager viewPager;
     private RecipesViewModel viewModel;
 
@@ -33,10 +36,10 @@ public class RecipeActivity extends AppCompatActivity {
         viewModel.setSelectedRecipe(recipe);
 
         TextView title = findViewById(R.id.title);
-        title.setText(recipe.getName());
+        title.setText(recipe.getTitle());
 
         ImageView image = findViewById(R.id.image);
-        image.setImageDrawable(ResourcesCompat.getDrawable(getResources(), recipe.getImage(), null));
+        //TODO
 
         viewPager = findViewById(R.id.container);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

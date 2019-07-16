@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import cp317.wlu.ca.fridgepal.R;
+import cp317.wlu.ca.fridgepal.model.IngredientRecipe;
 import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class InstructionsFragment extends Fragment {
@@ -20,7 +21,7 @@ public class InstructionsFragment extends Fragment {
         return new InstructionsFragment();
     }
 
-    private Recipe recipe;
+    private IngredientRecipe recipe;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +40,7 @@ public class InstructionsFragment extends Fragment {
 
         recipe = viewModel.getSelectedRecipeLiveData().getValue();
 
-        instructions.setText(recipe.getDescription());
+        // TODO: Get description from recipe
+//        instructions.setText(recipe.getDescription());
     }
 }

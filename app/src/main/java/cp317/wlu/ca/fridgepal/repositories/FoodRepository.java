@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import cp317.wlu.ca.fridgepal.model.Category;
@@ -24,7 +25,7 @@ public class FoodRepository {
 
     private Map<String, Category> fridge;
     private DatabaseReference databaseReference;
-    private DataLoadedListener dataLoadedListener;
+    private List<DataLoadedListener> dataLoadedListeners = new ArrayList<>();
 
     public interface DataLoadedListener {
         void onDataLoaded();
@@ -60,7 +61,8 @@ public class FoodRepository {
                     fridge.get(food.getCategory()).addFood(food);
                 }
 
-                FoodRepository.this.dataLoadedListener.onDataLoaded();
+                FoodRepository.this.dataLoadedListeners.forEach(x -> x.onDataLoaded());
+
             }
 
             @Override
@@ -78,8 +80,8 @@ public class FoodRepository {
         databaseReference.push().setValue(food);
     }
 
-    public void setDataLoadedListener(DataLoadedListener dataLoadedListener) {
-        this.dataLoadedListener = dataLoadedListener;
+    public void addDataLoadedListener(DataLoadedListener dataLoadedListener) {
+        this.dataLoadedListeners.add(dataLoadedListener);
     }
 
 }

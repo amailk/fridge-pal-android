@@ -50,7 +50,7 @@ public class FridgeListFragment extends Fragment {
             startActivity(intent);
         });
 
-        foodRepository.setDataLoadedListener(() -> {
+        foodRepository.addDataLoadedListener(() -> {
             mAdapter.setCategories(foodRepository.getCategories());
         });
 

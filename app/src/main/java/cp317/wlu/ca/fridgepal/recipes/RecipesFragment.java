@@ -20,6 +20,7 @@ import java.util.List;
 
 import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Recipe;
+import cp317.wlu.ca.fridgepal.repositories.SpoonacularRepository;
 
 public class RecipesFragment extends Fragment {
 
@@ -33,7 +34,6 @@ public class RecipesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.recipes_fragment, container, false);
-
     }
 
     @Override
@@ -44,32 +44,16 @@ public class RecipesFragment extends Fragment {
 
         viewModel = ViewModelProviders.of(this).get(RecipesViewModel.class);
 
-        viewModel.getRecipeLiveData().observe(this, new Observer<List<Recipe>>() {
-            @Override
-            public void onChanged(@Nullable List<Recipe> recipes) {
-                String recipeString = "";
-
-                Resources res = getContext().getResources();
-                Drawable recipeImage = ResourcesCompat.getDrawable(res, R.drawable.raspberry, null);
-
-                for (Recipe recipe : recipes) {
-                    recipeString += recipe.getName() + "\n";
-
-                }
-                RecipesAdapter adapter = new RecipesAdapter(recipes, getContext(), new RecipesAdapter.OnRecipeSelectedListener() {
-                    @Override
-                    public void onRecipeSelected(Recipe recipe) {
-                        Intent intent = new Intent(getContext(), RecipeActivity.class);
-                        intent.putExtra(RecipeActivity.EXTRA_RECIPE, recipe);
-                        startActivity(intent);
-                    }
-                });
-                rvRecipes.setAdapter(adapter);
-                rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
-            }
+        viewModel.getRecipeLiveData().observe(this, recipes -> {
+            RecipesAdapter adapter = new RecipesAdapter(recipes, getContext(), recipe -> {
+//                Intent intent = new Intent(getContext(), RecipeActivity.class);
+//                intent.putExtra(RecipeActivity.EXTRA_RECIPE, recipe);
+//                startActivity(intent);
+            });
+            rvRecipes.setAdapter(adapter);
+            rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
         });
 
         viewModel.fetchRecipes();
-
     }
 }
