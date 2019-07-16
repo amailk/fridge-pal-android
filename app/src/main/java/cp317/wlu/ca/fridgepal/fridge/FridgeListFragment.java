@@ -24,8 +24,6 @@ import cp317.wlu.ca.fridgepal.model.FoodActivity;
 import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 
 public class FridgeListFragment extends Fragment {
-    private ArrayList<Category> categories = new ArrayList<>();
-
     private RecyclerView mRecyclerView;
     private ItemAdapter mAdapter;
     private FoodRepository foodRepository;
@@ -43,7 +41,7 @@ public class FridgeListFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mAdapter = new ItemAdapter(categories);
+        mAdapter = new ItemAdapter(foodRepository.getCategories());
         mRecyclerView.setAdapter(mAdapter);
 
         FloatingActionButton addButon = view.findViewById(R.id.add_food_item_button);
@@ -57,12 +55,6 @@ public class FridgeListFragment extends Fragment {
         });
 
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mAdapter.notifyDataSetChanged();
     }
 
     private class ItemHolder extends RecyclerView.ViewHolder {

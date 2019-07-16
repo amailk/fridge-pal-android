@@ -1,9 +1,12 @@
 package cp317.wlu.ca.fridgepal;
 
-import com.google.android.material.tabs.TabLayout;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -11,12 +14,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.google.android.material.tabs.TabLayout;
 
-import cp317.wlu.ca.fridgepal.fridge.FridgeFragment;
 import cp317.wlu.ca.fridgepal.fridge.FridgeListFragment;
 import cp317.wlu.ca.fridgepal.grocerylist.GroceryListFragment;
 import cp317.wlu.ca.fridgepal.recipes.RecipesFragment;
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 case 2:
                     return GroceryListFragment.newInstance();
                 default:
-                    return new FridgeFragment();
+                    return new FridgeListFragment();
             }
         }
 
