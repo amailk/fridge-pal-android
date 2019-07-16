@@ -12,6 +12,7 @@ public class Recipe implements Parcelable {
     @DrawableRes
     int image;
     List<Ingredient> ingredients;
+    int isFav;
 
 
     public Recipe(String name, String description, @DrawableRes int image, List<Ingredient> ingredients) {
@@ -19,6 +20,7 @@ public class Recipe implements Parcelable {
         this.description = description;
         this.image = image;
         this.ingredients = ingredients;
+        this.isFav = 0;
     }
 
     public String getName() {
@@ -31,6 +33,14 @@ public class Recipe implements Parcelable {
 
     public @DrawableRes int getImage() {
         return image;
+    }
+
+    public int getIsFav() {
+        return isFav;
+    }
+
+    public void setIsFav(int isFav) {
+        this.isFav = isFav;
     }
 
     public List<Ingredient> getIngredients() {

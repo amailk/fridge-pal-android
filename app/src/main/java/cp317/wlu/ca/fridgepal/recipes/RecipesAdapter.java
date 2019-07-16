@@ -20,6 +20,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         public TextView recipeTextView;
         public TextView descTextView;
         public ImageView imageDrawable;
+        public ImageView imageFavDrawable;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -27,7 +28,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
             recipeTextView = (TextView) itemView.findViewById(R.id.name_textview);
             descTextView = (TextView) itemView.findViewById(R.id.desc_textview);
             imageDrawable = (ImageView) itemView.findViewById(R.id.recipe_image);
-
+            imageFavDrawable = (ImageView) itemView.findViewById(R.id.favRecipeItem);
         }
     }
 
@@ -72,6 +73,22 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
 
         viewHolder.itemView.setOnClickListener(v -> {
             onRecipeSelectedListener.onRecipeSelected(recipes.get(position));
+        });
+
+        ImageView fav_img = viewHolder.imageFavDrawable;
+        fav_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(recipe.getIsFav()==0){
+                    fav_img.setImageResource(R.drawable.ic_favorite_black_24dp);
+                    recipe.setIsFav(1);
+                }
+                else{
+                    fav_img.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                    recipe.setIsFav(0);
+                }
+
+            }
         });
     }
 

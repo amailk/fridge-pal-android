@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +36,22 @@ public class RecipeActivity extends AppCompatActivity {
 
         TextView title = findViewById(R.id.title);
         title.setText(recipe.getName());
+
+        ImageView fav_img = findViewById(R.id.favRecipe_button);
+        fav_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(recipe.getIsFav()==0){
+                    fav_img.setImageResource(R.drawable.ic_favorite_black_24dp);
+                    recipe.setIsFav(1);
+                }
+                else{
+                    fav_img.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                    recipe.setIsFav(0);
+                }
+
+            }
+        });
 
         ImageView image = findViewById(R.id.image);
         image.setImageDrawable(ResourcesCompat.getDrawable(getResources(), recipe.getImage(), null));
