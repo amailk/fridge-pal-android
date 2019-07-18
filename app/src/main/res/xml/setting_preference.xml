@@ -29,5 +29,4 @@
         android:summary="On/Off Notifications"
         android:title="Notifications" />
 
-
 </PreferenceScreen>

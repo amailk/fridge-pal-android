@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "685323896721-jn919is4eno9lo23lv0q7ijcoppp1kvu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cp317.wlu.ca.fridgepal",
+            "certificate_hash": "b1bce312aceefbc888d097881530c7ba219a7b89"
+          }
+        },
+        {
+          "client_id": "685323896721-umefjotuh84h44dq19ouh6aph5198kn2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cp317.wlu.ca.fridgepal",
+            "certificate_hash": "4ebe5807d2c98e196308852a43040420865e572d"
+          }
+        },
+        {
           "client_id": "685323896721-5esthc4bpke66f4sit1clu94c39hnaak.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
