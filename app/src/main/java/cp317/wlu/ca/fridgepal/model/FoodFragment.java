@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -12,7 +13,11 @@ import androidx.fragment.app.Fragment;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import cp317.wlu.ca.fridgepal.R;
+import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 
 public class FoodFragment extends Fragment
 {
@@ -31,14 +36,17 @@ public class FoodFragment extends Fragment
         addDate.setText(foodName.getAddedDate());
         TextView expiryDate = (TextView) v.findViewById(R.id.expiry_date_text);
         expiryDate.setText(foodName.getExpiryDate());
-        CheckBox isFav = (CheckBox) v.findViewById(R.id.is_favorite_checkbox);
+        TextView isPriority = (TextView) v.findViewById(R.id.priority_item);
 
-        isFav.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        Button deleteFoodButton = (Button) v.findViewById(R.id.delete_food_button);
+
+        deleteFoodButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            public void onClick(View v)
             {
-                foodName.setIsFav(isChecked);
+                FoodRepository.getInstance().removedFood(foodName);
+                getActivity().finish();
             }
         });
 

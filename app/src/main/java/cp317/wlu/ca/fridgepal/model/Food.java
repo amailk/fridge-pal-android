@@ -4,17 +4,16 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @IgnoreExtraProperties
 public class Food implements Serializable
 {
-    private Date currentDate;
     private String name;
     private String addedDate;
     private String expiryDate;
     private String category;
-    private Boolean isFav;
     @Exclude
     private String Uuid;
 
@@ -22,11 +21,11 @@ public class Food implements Serializable
         // Default constructor required for Firebase
     }
 
-    public Food(String name, String category, String expiryDate) {
+    public Food(String name, String category, Date expDate) {
+        this.addedDate = new Date().toString();
         this.name = name;
         this.category = category;
-        this.expiryDate = expiryDate;
-        this.addedDate = new Date().toString();
+        this.expiryDate = expDate.toString();
     }
 
     public String getName() {
@@ -59,16 +58,6 @@ public class Food implements Serializable
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public Boolean getIsFav()
-    {
-        return isFav;
-    }
-
-    public void setIsFav(Boolean checked)
-    {
-        isFav = checked;
     }
 
     @Exclude

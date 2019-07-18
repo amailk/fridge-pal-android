@@ -81,6 +81,11 @@ public class FoodRepository {
         databaseReference.push().setValue(food);
     }
 
+    public void removedFood(Food food)
+    {
+        databaseReference.child(food.getUuid()).removeValue();
+    }
+
     public void addDataLoadedListener(DataLoadedListener dataLoadedListener) {
         this.dataLoadedListeners.add(dataLoadedListener);
     }

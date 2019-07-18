@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -26,11 +27,14 @@ public class AddFoodFragment extends Fragment {
     private Spinner mFoodCategory;
     private DatePicker mExpiryDate;
     private Button mAddButton;
+    private Button mBarcodeButton;
 
-    private String foodName;
+    private String foodName = "";
     private String foodCategory;
 
-    private Date expiryDate;
+    int day, month, year02;
+
+    private Date expiryDate = new Date();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,10 +45,11 @@ public class AddFoodFragment extends Fragment {
         mExpiryDate = v.findViewById(R.id.added_food_expiration_date);
         mAddButton = v.findViewById(R.id.added_food_add_button);
 
+        mBarcodeButton = v.findViewById(R.id.button_barcode);
+
         mFoodName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -70,21 +75,48 @@ public class AddFoodFragment extends Fragment {
             }
         });
 
-        int day, month, year;
 
-        day = mExpiryDate.getDayOfMonth();
-        month = mExpiryDate.getMonth();
-        year = mExpiryDate.getYear();
 
-        Calendar c2 = Calendar.getInstance();
-        c2.set(year, month, day);
-        expiryDate = c2.getTime();
+        mExpiryDate.setOnDateChangedListener(new DatePicker.OnDateChangedListener()
+        {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+            {
+                day = dayOfMonth;
+                month = monthOfYear;
+                year02 = year;
+
+                Calendar c2 = Calendar.getInstance();
+                c2.set(year02, month, day);
+                expiryDate = c2.getTime();
+            }
+        });
+
+        //day = mExpiryDate.getDayOfMonth();
+        //month = mExpiryDate.getMonth();
+        //year = mExpiryDate.getYear();
+
+        //Calendar c2 = Calendar.getInstance();
+        //c2.set(year02, month, day);
+        //expiryDate = c2.getTime();
 
         mAddButton.setOnClickListener(view -> {
-            Food food = new Food(foodName, foodCategory, expiryDate.toString());
+            Date d = new Date();
+            if(foodName.equals(""))
+            {
+                Toast.makeText(getActivity(), "You have not entered a food name", Toast.LENGTH_SHORT).show();
+            }
+            else if(d.compareTo(expiryDate) > 0 || d.compareTo(expiryDate) == 0)
+            {
+                Toast.makeText(getActivity(), "Date of expiry cannot be before tomorrow's date", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Food food = new Food(foodName, foodCategory, expiryDate);
 
-            FoodRepository.getInstance().addFood(food);
-            getActivity().finish();
+                FoodRepository.getInstance().addFood(food);
+                getActivity().finish();
+            }
         });
 
         return v;

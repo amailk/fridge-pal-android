@@ -15,6 +15,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Food Using Barcode"
+                android:id="@+id/button_barcode"/>
+
             <TextView
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
@@ -40,19 +46,6 @@
                 android:paddingBottom="25dp"
                 android:entries="@array/food_category_list"
                 android:id="@+id/added_food_category"/>
-
-            <TextView
-                style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/date_of_purchase"/>
-
-            <DatePicker
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:startYear="2019"
-                android:endYear="2100"
-                android:id="@+id/added_food_purchase_date"/>
 
             <TextView
                 style="?android:listSeparatorTextViewStyle"
