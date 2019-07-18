@@ -12,6 +12,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Food Using Barcode"
+                android:id="@+id/button_barcode"/>
+
             <TextView
                 android:id="@+id/textView4"
                 style="?android:listSeparatorTextViewStyle"
@@ -47,17 +53,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/date_of_purchase" />
-
-            <DatePicker
-                android:id="@+id/added_food_purchase_date"
-                android:theme="@style/MyDatePickerDialogTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:datePickerMode="calendar"
-                android:endYear="2100"
-                android:headerBackground="@color/colorPrimaryLight"
-                android:startYear="2019" />
+                android:text="@string/date_of_expiry"/>
 
             <TextView
                 android:id="@+id/textView8"
@@ -65,7 +61,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/date_of_expiry" />
-
             <DatePicker
                 android:id="@+id/added_food_expiration_date"
                 android:theme="@style/MyDatePickerDialogTheme"
