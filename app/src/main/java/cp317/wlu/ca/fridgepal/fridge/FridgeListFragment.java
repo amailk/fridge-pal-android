@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 
 import cp317.wlu.ca.fridgepal.R;
@@ -70,12 +69,15 @@ public class FridgeListFragment extends Fragment {
 
     private class ItemHolder2 extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView foodName;
+        private TextView foodExpDate;
         private Food foodObj;
 
         public ItemHolder2(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.fridge_list_item_layout_2, parent, false));
             itemView.setOnClickListener(this);
             foodName = itemView.findViewById(R.id.food_name);
+            foodExpDate = itemView.findViewById(R.id.food_exp_date);
+
         }
 
         @Override
@@ -136,8 +138,10 @@ public class FridgeListFragment extends Fragment {
         @Override
         public void onBindViewHolder(ItemHolder2 holder, int position) {
             String s = mFoods.get(position).getName();
+            String expDate = mFoods.get(position).getExpiryDate();
             holder.foodObj = mFoods.get(position);
             holder.foodName.setText(s);
+            holder.foodExpDate.setText(expDate);
         }
 
         @Override
