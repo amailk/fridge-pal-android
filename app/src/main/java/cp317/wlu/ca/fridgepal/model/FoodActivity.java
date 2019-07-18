@@ -19,7 +19,7 @@ public class FoodActivity extends AppCompatActivity
 
         FragmentManager fm = getSupportFragmentManager();
 
-        String foodName = getIntent().getStringExtra("args_food_id");
+        Food foodName = (Food) getIntent().getSerializableExtra("args_food_id");
 
         Fragment f = fm.findFragmentById(R.id.food_fragment_container);
         if(f == null)
@@ -29,10 +29,10 @@ public class FoodActivity extends AppCompatActivity
         }
     }
 
-    public static Intent newIntent(Context packageContext, String foodName) // String param to be changed to food id uuid.
+    public static Intent newIntent(Context packageContext, Food foodObj) // String param to be changed to food id uuid.
     {
         Intent intent = new Intent(packageContext, FoodActivity.class);
-        intent.putExtra("args_food_id", foodName);
+        intent.putExtra("args_food_id", foodObj);
         return intent;
     }
 }

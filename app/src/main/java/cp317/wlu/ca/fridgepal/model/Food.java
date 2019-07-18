@@ -3,14 +3,18 @@ package cp317.wlu.ca.fridgepal.model;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @IgnoreExtraProperties
-public class Food {
+public class Food implements Serializable
+{
+    private Date currentDate;
     private String name;
     private String addedDate;
     private String expiryDate;
     private String category;
+    private Boolean isFav;
     @Exclude
     private String Uuid;
 
@@ -55,6 +59,16 @@ public class Food {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Boolean getIsFav()
+    {
+        return isFav;
+    }
+
+    public void setIsFav(Boolean checked)
+    {
+        isFav = checked;
     }
 
     @Exclude

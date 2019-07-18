@@ -81,7 +81,7 @@ public class FridgeListFragment extends Fragment {
         @Override
         public void onClick(View view) {
             //Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
-            Intent intent = FoodActivity.newIntent(getActivity(), foodObj.getName());
+            Intent intent = FoodActivity.newIntent(getActivity(), foodObj);
             //intent.putExtra("arg_food_name", foodObj.getName());
             startActivity(intent);
         }
