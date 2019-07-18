@@ -4,7 +4,7 @@
 
     <ListPreference
         android:layout_width="match_parent"
-        android:defaultValue="Sunday"
+        android:defaultValue="@string/grocery_day_default"
         android:dialogTitle="Select Grocery Day"
         android:entries="@array/pref_days_entries"
         android:entryValues="@array/pref_days_values"
@@ -14,7 +14,7 @@
 
     <ListPreference
         android:layout_width="match_parent"
-        android:defaultValue="Vegetarian"
+        android:defaultValue="@string/pref_diet_default"
         android:dialogTitle="Select Dietary Preference"
         android:entries="@array/pref_diet_entries"
         android:entryValues="@array/pref_diet_values"
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:defaultValue="true"
         android:key="check_box_pref_notifications"
-        android:summary="On/Off Notifications"
+        android:summary="Receive alerts before food expires"
         android:title="Notifications" />
 
 </PreferenceScreen>

@@ -24,5 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             getFragmentManager().beginTransaction().add(R.id.setting_fragment_container, new SettingsFragment()).commit();
         }
+
+
     }
 }
