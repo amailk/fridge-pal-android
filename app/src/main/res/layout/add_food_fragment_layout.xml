@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,8 +9,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
             <Button
                 android:layout_width="match_parent"
@@ -22,52 +19,62 @@
                 android:id="@+id/button_barcode"/>
 
             <TextView
+                android:id="@+id/textView4"
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/add_food_name"/>
+                android:text="@string/add_food_name" />
 
             <EditText
+                android:id="@+id/added_food_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
                 android:hint="@string/add_food_name_hint"
-                android:id="@+id/added_food_name"/>
+                android:paddingLeft="16dp"
+                android:textSize="16sp" />
+
 
             <TextView
+                android:id="@+id/textView6"
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/select_food_category"/>
+                android:text="@string/select_food_category" />
 
             <Spinner
-                android:layout_width="match_parent"
+                android:id="@+id/added_food_category"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="25dp"
                 android:entries="@array/food_category_list"
-                android:id="@+id/added_food_category"/>
+                android:paddingBottom="25dp" />
 
             <TextView
+                android:id="@+id/textView7"
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/date_of_expiry"/>
 
-            <DatePicker
+            <TextView
+                android:id="@+id/textView8"
+                style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:startYear="2019"
+                android:text="@string/date_of_expiry" />
+            <DatePicker
+                android:id="@+id/added_food_expiration_date"
+                android:theme="@style/MyDatePickerDialogTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:endYear="2100"
-                android:id="@+id/added_food_expiration_date"/>
+                android:headerBackground="@color/colorPrimaryLight"
+                android:startYear="2019" />
 
             <Button
+                android:id="@+id/added_food_add_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/add_food_button"
-                android:id="@+id/added_food_add_button"/>
-
+                android:text="@string/add_food_button" />
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>
