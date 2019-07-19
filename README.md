@@ -16,6 +16,8 @@ adb install /path/to/fridgepal/apk
 * Ama Liyanage
 * Nandani Chotara
 * Amin Iqbal
+* Andrew Charak
+* Ellen Shang
 
 See also the list of [contributers](https://github.com/fridge-pal/fridge-pal-android/graphs/contributors) who participated in this project.
 
