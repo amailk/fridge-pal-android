@@ -8,8 +8,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @IgnoreExtraProperties
-public class Food implements Serializable
-{
+public class Food implements Serializable {
+
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM YYYY");
+
     private String name;
     private String addedDate;
     private String expiryDate;
@@ -25,7 +27,7 @@ public class Food implements Serializable
         this.addedDate = new Date().toString();
         this.name = name;
         this.category = category;
-        this.expiryDate = expDate.toString();
+        this.expiryDate = DATE_FORMAT.format(expDate);
     }
 
     public String getName() {

@@ -11,10 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Category;
@@ -137,11 +143,11 @@ public class FridgeListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ItemHolder2 holder, int position) {
-            String s = mFoods.get(position).getName();
-            String expDate = mFoods.get(position).getExpiryDate();
-            holder.foodObj = mFoods.get(position);
-            holder.foodName.setText(s);
-            holder.foodExpDate.setText(expDate);
+            Food food = mFoods.get(position);
+
+            holder.foodObj = food;
+            holder.foodName.setText(food.getName());
+            holder.foodExpDate.setText(getString(R.string.best_before_label, food.getExpiryDate()));
         }
 
         @Override
