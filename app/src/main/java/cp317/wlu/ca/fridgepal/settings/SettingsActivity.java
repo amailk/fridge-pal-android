@@ -3,6 +3,8 @@ package cp317.wlu.ca.fridgepal.settings;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import cp317.wlu.ca.fridgepal.R;
 
@@ -24,5 +26,8 @@ public class SettingsActivity extends AppCompatActivity {
 
             getFragmentManager().beginTransaction().add(R.id.setting_fragment_container, new SettingsFragment()).commit();
         }
+
+
     }
+
 }

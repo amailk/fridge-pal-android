@@ -23,7 +23,7 @@
         <item> Vegetarian</item>
         <item> Vegan</item>
         <item> Gluten Free</item>
-        <item> Pescetarians</item>
+        <item> Pescatarian</item>
     </string-array>
 
     <string name="nextToDiet_button">Next</string>
@@ -75,6 +75,8 @@
 
     </string-array>
 
+    <string name="grocery_day_default">Sunday</string>
+
     <string-array name="pref_days_values">
         <item> Sunday</item>
         <item> Monday</item>
@@ -90,14 +92,16 @@
         <item> Vegetarian</item>
         <item> Vegan</item>
         <item> Gluten Free</item>
-        <item> Pescetarians</item>
+        <item> Pescatarian</item>
     </string-array>
+
+    <string name="pref_diet_default">Vegetarian</string>
 
     <string-array name="pref_diet_values">
         <item> Vegetarian</item>
         <item> Vegan</item>
         <item> Gluten Free</item>
-        <item> Pescetarians</item>
+        <item> Pescatarian</item>
     </string-array>
 
 </resources>
