@@ -11,8 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Food;
 
-public class FoodActivity extends AppCompatActivity
-{
+public class FoodActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +22,7 @@ public class FoodActivity extends AppCompatActivity
         Food foodName = (Food) getIntent().getSerializableExtra("args_food_id");
 
         Fragment f = fm.findFragmentById(R.id.food_fragment_container);
-        if(f == null)
-        {
+        if (f == null) {
             f = FoodFragment.newInstance(foodName);
             fm.beginTransaction().add(R.id.food_fragment_container, f).commit();
         }

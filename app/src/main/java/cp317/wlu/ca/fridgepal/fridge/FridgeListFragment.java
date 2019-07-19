@@ -46,7 +46,7 @@ public class FridgeListFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
         FloatingActionButton addButon = view.findViewById(R.id.add_food_item_button);
-        addButon.setOnClickListener( v -> {
+        addButon.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AddFoodActivity.class);
             startActivity(intent);
         });
@@ -145,7 +145,7 @@ public class FridgeListFragment extends Fragment {
 
             if (now.until(expiryDate).getDays() < 3) {
                 holder.foodExpDate.setTextColor(Color.RED);
-            } else if(now.until(expiryDate).getDays() < 5) {
+            } else if (now.until(expiryDate).getDays() < 5) {
                 holder.foodExpDate.setTextColor(Color.YELLOW);
             }
 

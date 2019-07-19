@@ -1,7 +1,9 @@
 package cp317.wlu.ca.fridgepal;
 
 import android.content.Intent;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import cp317.wlu.ca.fridgepal.login.LoginActivity;

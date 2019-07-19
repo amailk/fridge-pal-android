@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 public class Ingredient implements Parcelable {
     String name;
+
     public enum QuantityType {
         ML,
         CUPS,
@@ -13,7 +14,9 @@ public class Ingredient implements Parcelable {
         G,
         TSP,
         TBSP
-    };
+    }
+
+    ;
     int amount;
 
     QuantityType quantityType;
@@ -27,9 +30,11 @@ public class Ingredient implements Parcelable {
     public String getName() {
         return name;
     }
+
     public QuantityType getQuantityType() {
         return quantityType;
     }
+
     public int getAmount() {
         return amount;
     }

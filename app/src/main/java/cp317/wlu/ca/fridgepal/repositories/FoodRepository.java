@@ -81,8 +81,7 @@ public class FoodRepository {
         databaseReference.push().setValue(food);
     }
 
-    public void removedFood(Food food)
-    {
+    public void removedFood(Food food) {
         databaseReference.child(food.getUuid()).removeValue();
     }
 

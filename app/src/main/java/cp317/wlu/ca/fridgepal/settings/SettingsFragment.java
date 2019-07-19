@@ -33,12 +33,12 @@ public class SettingsFragment extends PreferenceFragment {
         preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                if(key.equals(PREF_GROCERY_DAYS)){
+                if (key.equals(PREF_GROCERY_DAYS)) {
                     Preference groceryPref = findPreference(key);
                     groceryPref.setSummary(sharedPreferences.getString(key, ""));
                 }
 
-                if(key.equals(PREF_DIET)){
+                if (key.equals(PREF_DIET)) {
                     Preference dietPref = findPreference(key);
                     dietPref.setSummary(sharedPreferences.getString(key, ""));
                 }
@@ -48,7 +48,7 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(preferenceChangeListener);
 
@@ -60,7 +60,7 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onResume();
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
     }

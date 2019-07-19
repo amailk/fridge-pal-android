@@ -13,11 +13,9 @@ import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Food;
 import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 
-public class FoodFragment extends Fragment
-{
+public class FoodFragment extends Fragment {
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.food_fragment_layout, container, false);
 
         Food foodName = (Food) getArguments().getSerializable("arg_food_name");
@@ -34,11 +32,9 @@ public class FoodFragment extends Fragment
 
         Button deleteFoodButton = (Button) v.findViewById(R.id.delete_food_button);
 
-        deleteFoodButton.setOnClickListener(new View.OnClickListener()
-        {
+        deleteFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 FoodRepository.getInstance().removedFood(foodName);
                 getActivity().finish();
             }
@@ -47,8 +43,7 @@ public class FoodFragment extends Fragment
         return v;
     }
 
-    public static FoodFragment newInstance(Food foodObj)
-    {
+    public static FoodFragment newInstance(Food foodObj) {
         Bundle args = new Bundle();
         args.putSerializable("arg_food_name", foodObj);
 

@@ -76,12 +76,9 @@ public class AddFoodFragment extends Fragment {
         });
 
 
-
-        mExpiryDate.setOnDateChangedListener(new DatePicker.OnDateChangedListener()
-        {
+        mExpiryDate.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
             @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-            {
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 day = dayOfMonth;
                 month = monthOfYear;
                 year02 = year;
@@ -102,16 +99,11 @@ public class AddFoodFragment extends Fragment {
 
         mAddButton.setOnClickListener(view -> {
             Date d = new Date();
-            if(foodName.equals(""))
-            {
+            if (foodName.equals("")) {
                 Toast.makeText(getActivity(), "You have not entered a food name", Toast.LENGTH_SHORT).show();
-            }
-            else if(d.compareTo(expiryDate) > 0 || d.compareTo(expiryDate) == 0)
-            {
+            } else if (d.compareTo(expiryDate) > 0 || d.compareTo(expiryDate) == 0) {
                 Toast.makeText(getActivity(), "Date of expiry cannot be before tomorrow's date", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
+            } else {
                 Food food = new Food(foodName, foodCategory, expiryDate);
 
                 FoodRepository.getInstance().addFood(food);

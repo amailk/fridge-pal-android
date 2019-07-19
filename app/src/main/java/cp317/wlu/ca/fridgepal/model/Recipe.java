@@ -2,7 +2,9 @@ package cp317.wlu.ca.fridgepal.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import androidx.annotation.DrawableRes;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,8 @@ public class Recipe implements Parcelable {
         return description;
     }
 
-    public @DrawableRes int getImage() {
+    public @DrawableRes
+    int getImage() {
         return image;
     }
 

@@ -36,11 +36,11 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
     }
 
     //a method to create status bar notification
-    private void sendNotification(String messageBody){
+    private void sendNotification(String messageBody) {
         Intent intent = new Intent(this, FridgeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        PendingIntent pendingIntent =  PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
@@ -56,7 +56,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
 
         //to show this notification we need a class
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0,notificationBuilder.build());
+        notificationManager.notify(0, notificationBuilder.build());
 
     }
 }

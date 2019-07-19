@@ -1,6 +1,7 @@
 package cp317.wlu.ca.fridgepal.recipes;
 
 import android.content.Context;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;

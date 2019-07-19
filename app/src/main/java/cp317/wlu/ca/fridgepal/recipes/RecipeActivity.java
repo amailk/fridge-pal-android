@@ -1,7 +1,9 @@
 package cp317.wlu.ca.fridgepal.recipes;
 
 import androidx.lifecycle.ViewModelProviders;
+
 import android.os.Bundle;
+
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
@@ -11,6 +13,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
