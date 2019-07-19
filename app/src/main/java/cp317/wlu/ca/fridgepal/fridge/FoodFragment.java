@@ -1,22 +1,16 @@
-package cp317.wlu.ca.fridgepal.model;
+package cp317.wlu.ca.fridgepal.fridge;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import org.w3c.dom.Text;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import cp317.wlu.ca.fridgepal.R;
+import cp317.wlu.ca.fridgepal.model.Food;
 import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 
 public class FoodFragment extends Fragment
