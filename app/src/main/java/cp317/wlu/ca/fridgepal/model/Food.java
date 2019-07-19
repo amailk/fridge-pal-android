@@ -4,12 +4,17 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @IgnoreExtraProperties
-public class Food implements Serializable
-{
+public class Food implements Serializable {
+
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM YYYY");
+
     private String name;
     private String addedDate;
     private String expiryDate;
@@ -25,7 +30,7 @@ public class Food implements Serializable
         this.addedDate = new Date().toString();
         this.name = name;
         this.category = category;
-        this.expiryDate = expDate.toString();
+        this.expiryDate = DATE_FORMAT.format(expDate);
     }
 
     public String getName() {
@@ -46,6 +51,11 @@ public class Food implements Serializable
 
     public String getExpiryDate() {
         return expiryDate;
+    }
+
+    @Exclude
+    public LocalDate getExpiryDateAsDate() {
+        return LocalDate.parse(expiryDate, DateTimeFormatter.ofPattern("dd LLL yyyy"));
     }
 
     public void setExpiryDate(String expiryDate) {

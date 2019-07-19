@@ -1,6 +1,7 @@
 package cp317.wlu.ca.fridgepal.fridge;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -8,13 +9,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Category;
@@ -137,11 +146,19 @@ public class FridgeListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ItemHolder2 holder, int position) {
-            String s = mFoods.get(position).getName();
-            String expDate = mFoods.get(position).getExpiryDate();
-            holder.foodObj = mFoods.get(position);
-            holder.foodName.setText(s);
-            holder.foodExpDate.setText(expDate);
+            LocalDate now = LocalDate.now();
+            Food food = mFoods.get(position);
+            LocalDate expiryDate = food.getExpiryDateAsDate();
+
+            if (now.until(expiryDate).getDays() < 3) {
+                holder.foodExpDate.setTextColor(Color.RED);
+            } else if(now.until(expiryDate).getDays() < 5) {
+                holder.foodExpDate.setTextColor(Color.YELLOW);
+            }
+
+            holder.foodObj = food;
+            holder.foodName.setText(food.getName());
+            holder.foodExpDate.setText(food.getExpiryDate());
         }
 
         @Override
