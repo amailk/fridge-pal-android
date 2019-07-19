@@ -8,9 +8,10 @@
         android:dialogTitle="Select Grocery Day"
         android:entries="@array/pref_days_entries"
         android:entryValues="@array/pref_days_values"
-        android:key="pref_grocery_days"
+        android:key="pref_grocery_day"
         android:summary="Sunday"
-        android:title="@string/grocery_day_title" />
+        android:title="@string/grocery_day_title"
+        android:id="@+id/pref_grocery_day"/>
 
     <ListPreference
         android:layout_width="match_parent"
@@ -20,13 +21,16 @@
         android:entryValues="@array/pref_diet_values"
         android:key="pref_diet"
         android:summary="Vegetarian"
-        android:title="Dietary Preference" />
+        android:title="Dietary Preference"
+        android:id="@+id/pref_diet"/>
 
     <CheckBoxPreference
         android:layout_width="match_parent"
         android:defaultValue="true"
-        android:key="check_box_pref_notifications"
+        android:key="pref_notifications"
         android:summary="Receive alerts before food expires"
-        android:title="Notifications" />
+        android:title="Notifications"
+        android:id="@+id/pref_notifications"/>
+
 
 </PreferenceScreen>

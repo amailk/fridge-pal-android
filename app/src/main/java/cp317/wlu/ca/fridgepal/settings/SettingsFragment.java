@@ -20,7 +20,7 @@ import cp317.wlu.ca.fridgepal.R;
  */
 public class SettingsFragment extends PreferenceFragment {
 
-    private static final String PREF_GROCERY_DAYS = "pref_grocery_days";
+    private static final String PREF_GROCERY_DAYS = "pref_grocery_day";
     private static final String PREF_DIET = "pref_diet";
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
 
