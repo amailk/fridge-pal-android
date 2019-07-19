@@ -6,15 +6,6 @@ import android.widget.TextView;
 
 import cp317.wlu.ca.fridgepal.R;
 
-public class GroceryListAdapter extends RecyclerView.Adapter<GroceryListAdapter.ViewHolder> {
-    public class ViewHolder extends RecyclerView.ViewHolder {
+public class GroceryListAdapter  {
 
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-
-
-        }
-    }
 }

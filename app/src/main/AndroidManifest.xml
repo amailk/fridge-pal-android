@@ -33,7 +33,7 @@
         <activity android:name=".fridge.FridgeListActivity" />
         <activity android:name=".model.FoodActivity" />
         <activity android:name=".fridge.AddFoodActivity" />
-
+        <activity android:name=".grocerylist.GroceryListActicity" />
 
     </application>
 
