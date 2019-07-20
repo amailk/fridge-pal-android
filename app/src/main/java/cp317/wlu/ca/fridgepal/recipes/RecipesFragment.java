@@ -1,17 +1,13 @@
 package cp317.wlu.ca.fridgepal.recipes;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,11 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import cp317.wlu.ca.fridgepal.R;
-import cp317.wlu.ca.fridgepal.model.Recipe;
-import cp317.wlu.ca.fridgepal.repositories.SpoonacularRepository;
 
 public class RecipesFragment extends Fragment {
 
@@ -49,9 +41,9 @@ public class RecipesFragment extends Fragment {
 
         viewModel.getRecipeLiveData().observe(this, recipes -> {
             RecipesAdapter adapter = new RecipesAdapter(recipes, getContext(), recipe -> {
-//                Intent intent = new Intent(getContext(), RecipeActivity.class);
-//                intent.putExtra(RecipeActivity.EXTRA_RECIPE, recipe);
-//                startActivity(intent);
+                Intent intent = new Intent(getContext(), RecipeActivity.class);
+                intent.putExtra(RecipeActivity.EXTRA_RECIPE_ID, recipe.getId());
+                startActivity(intent);
             });
             rvRecipes.setAdapter(adapter);
             rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -24,7 +24,7 @@ public class IngredientsFragment extends Fragment {
         return new IngredientsFragment();
     }
 
-    private IngredientRecipe recipe;
+    private Recipe recipe;
     private RecipesViewModel viewModel;
 
 

@@ -28,7 +28,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
 
             recipeTextView = itemView.findViewById(R.id.name_textview);
             imageDrawable = itemView.findViewById(R.id.recipe_image);
-
         }
     }
 
@@ -44,7 +43,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         this.recipes = recipes;
         this.context = context;
         this.onRecipeSelectedListener = onRecipeSelectedListener;
-
     }
 
     @Override

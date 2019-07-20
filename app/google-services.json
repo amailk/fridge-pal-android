@@ -15,6 +15,38 @@
       },
       "oauth_client": [
         {
+          "client_id": "685323896721-6afm7823crid7jokp6eilga965s714i8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cp317.wlu.ca.fridgepal",
+            "certificate_hash": "bc31c1cb33c1103264418f44baa171f50f481cee"
+          }
+        },
+        {
+          "client_id": "685323896721-169v1gdgnl7tm7vqir5ubcn4ltbuormv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cp317.wlu.ca.fridgepal",
+            "certificate_hash": "f5c892229df196b7bef3a804746e2c79002bae42"
+          }
+        },
+        {
+          "client_id": "685323896721-q2kb1uddkeuhkhacmlf4nqk85urgero5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cp317.wlu.ca.fridgepal",
+            "certificate_hash": "c3d46439ace422d97c522ccee56f21a5c1ddd101"
+          }
+        },
+        {
+          "client_id": "685323896721-o6qih3vc3r53do9bve6fpdlujm5kajbm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cp317.wlu.ca.fridgepal",
+            "certificate_hash": "00389da5e1555b633d44206c0a791159f5ecf60b"
+          }
+        },
+        {
           "client_id": "685323896721-jn919is4eno9lo23lv0q7ijcoppp1kvu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

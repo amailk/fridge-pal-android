@@ -24,8 +24,6 @@ public class InstructionsFragment extends Fragment {
         return new InstructionsFragment();
     }
 
-    private IngredientRecipe recipe;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,9 +39,8 @@ public class InstructionsFragment extends Fragment {
 
         viewModel = ViewModelProviders.of(getActivity()).get(RecipesViewModel.class);
 
-        recipe = viewModel.getSelectedRecipeLiveData().getValue();
-
-        // TODO: Get description from recipe
-//        instructions.setText(recipe.getDescription());
+        viewModel.getSelectedRecipeLiveData().observe(this, recipe -> {
+            instructions.setText(recipe.getInstructions());
+        });
     }
 }

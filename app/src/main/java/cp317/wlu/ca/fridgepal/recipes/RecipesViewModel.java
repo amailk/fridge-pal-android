@@ -10,14 +10,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import cp317.wlu.ca.fridgepal.model.IngredientRecipe;
+import cp317.wlu.ca.fridgepal.model.Recipe;
 import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 import cp317.wlu.ca.fridgepal.repositories.SpoonacularRepository;
 
 public class RecipesViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<IngredientRecipe>> recipeLiveData = new MutableLiveData<>();
+    private MutableLiveData<Recipe> selectedRecipeLiveData = new MutableLiveData<>();
 
-    private MutableLiveData<IngredientRecipe> selectedRecipeLiveData = new MutableLiveData<>();
     private final SpoonacularRepository spoonacularRepository;
     private final FoodRepository foodRepository;
 
@@ -43,11 +44,11 @@ public class RecipesViewModel extends AndroidViewModel {
         spoonacularRepository.fetchRecipesByIngredient(ingredients, ingredientRecipes -> recipeLiveData.postValue(ingredientRecipes));
     }
 
-    public LiveData<IngredientRecipe> getSelectedRecipeLiveData() {
+    public LiveData<Recipe> getSelectedRecipeLiveData() {
         return selectedRecipeLiveData;
     }
 
-    public void setSelectedRecipe(IngredientRecipe recipe) {
-        selectedRecipeLiveData.setValue(recipe);
+    public void fetchSelectedRecipe(String recipeId) {
+        spoonacularRepository.fetchRecipeInformation(recipeId, recipe -> selectedRecipeLiveData.setValue(recipe));
     }
 }
