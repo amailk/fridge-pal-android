@@ -2,6 +2,7 @@ package cp317.wlu.ca.fridgepal.recipes;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
@@ -22,7 +23,6 @@ import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class RecipeActivity extends AppCompatActivity {
     public static final String EXTRA_RECIPE_ID = "extra_recipe_id";
-
     private static final String TAG = RecipeActivity.class.getSimpleName();
 
     private String recipeId;
@@ -59,6 +59,12 @@ public class RecipeActivity extends AppCompatActivity {
                 .fit()
                 .centerCrop()
                 .into(imageView);
+
+        findViewById(R.id.button_more_like_this).setOnClickListener(v -> {
+            Intent intent = new Intent(this, RelatedRecipesActivity.class);
+            intent.putExtra(RelatedRecipesActivity.EXTRA_RECIPE_ID, recipeId);
+            startActivity(intent);
+        });
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

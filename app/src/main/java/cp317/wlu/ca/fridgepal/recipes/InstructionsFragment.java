@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import cp317.wlu.ca.fridgepal.R;
-import cp317.wlu.ca.fridgepal.model.IngredientRecipe;
-import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class InstructionsFragment extends Fragment {
     private RecipesViewModel viewModel;

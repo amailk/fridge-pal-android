@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import cp317.wlu.ca.fridgepal.R;
-import cp317.wlu.ca.fridgepal.model.IngredientRecipe;
+import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHolder> {
 
@@ -32,16 +32,14 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
     }
 
     public interface OnRecipeSelectedListener {
-        void onRecipeSelected(IngredientRecipe recipe);
+        void onRecipeSelected(Recipe recipe);
     }
 
-    private List<IngredientRecipe> recipes;
-    private Context context;
+    private List<Recipe> recipes;
     private OnRecipeSelectedListener onRecipeSelectedListener;
 
-    public RecipesAdapter(List<IngredientRecipe> recipes, Context context, OnRecipeSelectedListener onRecipeSelectedListener) {
+    public RecipesAdapter(List<Recipe> recipes, OnRecipeSelectedListener onRecipeSelectedListener) {
         this.recipes = recipes;
-        this.context = context;
         this.onRecipeSelectedListener = onRecipeSelectedListener;
     }
 
@@ -58,7 +56,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(RecipesAdapter.ViewHolder viewHolder, int position) {
-        IngredientRecipe recipe = recipes.get(position);
+        Recipe recipe = recipes.get(position);
 
         TextView textView = viewHolder.recipeTextView;
         textView.setText(recipe.getTitle());

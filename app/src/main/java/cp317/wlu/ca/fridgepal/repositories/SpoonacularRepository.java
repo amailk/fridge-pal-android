@@ -9,8 +9,8 @@ import com.google.gson.GsonBuilder;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
-import cp317.wlu.ca.fridgepal.model.IngredientRecipe;
 import cp317.wlu.ca.fridgepal.model.Recipe;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,23 +43,23 @@ public class SpoonacularRepository {
         spoonacularApi = retrofit.create(SpoonacularApi.class);
     }
 
-    public void fetchRecipesByIngredient(List<String> ingredients, Consumer<List<IngredientRecipe>> result) {
-        Call<List<IngredientRecipe>> recipesCall = spoonacularApi.getRecipesByIngredient(String.join(",", ingredients));
-        recipesCall.enqueue(new Callback<List<IngredientRecipe>>() {
+    public void fetchRecipesByIngredient(List<String> ingredients, Consumer<List<Recipe>> result) {
+        Call<List<Recipe>> recipesCall = spoonacularApi.getRecipesByIngredient(String.join(",", ingredients));
+        recipesCall.enqueue(new Callback<List<Recipe>>() {
             @Override
-            public void onResponse(Call<List<IngredientRecipe>> call, Response<List<IngredientRecipe>> response) {
+            public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
                 Log.d(TAG, "Response received: " + response.body().size());
 
-                for (IngredientRecipe ingredientRecipe : response.body()) {
-                    Log.d(TAG, ingredientRecipe.getId() + " " + ingredientRecipe.getTitle());
+                for (Recipe recipe : response.body()) {
+                    Log.d(TAG, recipe.getId() + " " + recipe.getTitle());
                 }
 
                 result.accept(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<IngredientRecipe>> call, Throwable t) {
-                Log.d(TAG, "onFailure" + t.getMessage() );
+            public void onFailure(Call<List<Recipe>> call, Throwable t) {
+                Log.e(TAG, "onFailure" + t.getMessage());
                 result.accept(Collections.emptyList());
             }
         });
@@ -68,7 +68,6 @@ public class SpoonacularRepository {
     public void fetchRecipeInformation(String recipeId, Consumer<Recipe> result) {
         Call<Recipe> recipeCall = spoonacularApi.getRecipeInformation(recipeId);
         recipeCall.enqueue(new Callback<Recipe>() {
-
             @Override
             public void onResponse(Call<Recipe> call, Response<Recipe> response) {
                 Log.d(TAG, "Response received: " + response.body().getId() + " " + response.body().getTitle());
@@ -77,20 +76,57 @@ public class SpoonacularRepository {
 
             @Override
             public void onFailure(Call<Recipe> call, Throwable t) {
-                Log.d(TAG, "onFailure" + t.getMessage());
+                Log.e(TAG, "onFailure" + t.getMessage());
                 result.accept(null);
             }
         });
     }
 
+    public void fetchRelatedRecipesForRecipe(String recipeId, Consumer<List<Recipe>> result) {
+        Call<List<Recipe>> recipesCall = spoonacularApi.getRelatedRecipesForRecipe(recipeId);
+        recipesCall.enqueue(new Callback<List<Recipe>>() {
+            @Override
+            public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
+                Log.d(TAG, "Response recieved: " + response.body().size());
+
+//                List<Recipe> recipes = response.body();
+//                recipes.forEach(r -> r.setImage("https://spoonacular.com/recipeImages/"+r.getImage()));
+
+                result.accept(
+                        response.body()
+                                .stream()
+                                .map(
+                                        r -> {
+                                            r.setImage("https://spoonacular.com/recipeImages/" + r.getImage());
+                                            return r;
+                                        }
+                                )
+                                .distinct()
+                                .collect(Collectors.toList())
+                );
+
+//                result.accept(recipes);
+            }
+
+            @Override
+            public void onFailure(Call<List<Recipe>> call, Throwable t) {
+                Log.e(TAG, "onFailure" + t.getMessage());
+                result.accept(Collections.emptyList());
+            }
+        });
+    }
 
     interface SpoonacularApi {
         @GET("recipes/findByIngredients?number=5")
         @Headers(API_KEY_HEADER)
-        Call<List<IngredientRecipe>> getRecipesByIngredient(@Query("ingredients") String ingredients);
+        Call<List<Recipe>> getRecipesByIngredient(@Query("ingredients") String ingredients);
 
         @GET("recipes/{id}/information")
         @Headers(API_KEY_HEADER)
         Call<Recipe> getRecipeInformation(@Path("id") String recipeId);
+
+        @GET("recipes/{id}/similar")
+        @Headers(API_KEY_HEADER)
+        Call<List<Recipe>> getRelatedRecipesForRecipe(@Path("id") String recipeId);
     }
 }

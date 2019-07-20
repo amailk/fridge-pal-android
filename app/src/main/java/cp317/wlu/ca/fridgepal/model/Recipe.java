@@ -1,6 +1,7 @@
 package cp317.wlu.ca.fridgepal.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Recipe {
     boolean vegetarian;
@@ -66,4 +67,18 @@ public class Recipe {
 //    public void setAnalyzedInstructions(List<Instruction> analyzedInstructions) {
 //        this.analyzedInstructions = analyzedInstructions;
 //    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Recipe recipe = (Recipe) o;
+        return title.equals(recipe.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
+    }
 }
