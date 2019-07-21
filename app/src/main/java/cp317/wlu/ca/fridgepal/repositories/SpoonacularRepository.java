@@ -128,5 +128,6 @@ public class SpoonacularRepository {
         @GET("recipes/{id}/similar")
         @Headers(API_KEY_HEADER)
         Call<List<Recipe>> getRelatedRecipesForRecipe(@Path("id") String recipeId);
+
     }
 }
