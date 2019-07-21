@@ -82,4 +82,10 @@
         android:text="@string/delete_food_label"
         android:id="@+id/delete_food_button"/>
 
+    <Button
+        android:id="@+id/button_suggested_recipes"
+        android:text="@string/suggested_recipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
