@@ -103,6 +103,8 @@
         <item> Gluten Free</item>
         <item> Pescatarian</item>
     </string-array>
+    <string name="title_activity_suggested_recipes">SuggestedRecipesActivity</string>
+    <string name="suggested_recipes">Suggested Recipes</string>
 
 </resources>
 

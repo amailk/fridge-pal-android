@@ -25,18 +25,22 @@ public class RecipesFragment extends Fragment {
 
     private static final String TYPE = "TYPE";
     private static final String RECIPE_ID = "RECIPE_ID";
+    private static final String INGREDIENT_NAME = "INGREDIENT_NAME";
     private static final int TYPE_RECIPES_FOR_FRIDGE = 0;
     private static final int TYPE_RELATED_RECIPES_FOR_RECIPE = 1;
+    private static final int TYPE_SUGGESTED_RECIPES_FOR_INGREDIENT = 2;
 
     private RecipesViewModel viewModel;
     private int fragmentType;
     private String relatedRecipeId;
+    private String ingredientName;
 
     public static RecipesFragment newInstanceWithRecipesForFood() {
         RecipesFragment fragment = new RecipesFragment();
         Bundle args = new Bundle();
         args.putInt(TYPE, TYPE_RECIPES_FOR_FRIDGE);
         args.putString(RECIPE_ID, null);
+        args.putString(INGREDIENT_NAME, null);
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,6 +50,17 @@ public class RecipesFragment extends Fragment {
         Bundle args = new Bundle();
         args.putInt(TYPE, TYPE_RELATED_RECIPES_FOR_RECIPE);
         args.putString(RECIPE_ID, recipeId);
+        args.putString(INGREDIENT_NAME, null);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static RecipesFragment newInstanceWithSuggestedRecipesForIngredient(String ingredientName) {
+        RecipesFragment fragment = new RecipesFragment();
+        Bundle args = new Bundle();
+        args.putInt(TYPE, TYPE_SUGGESTED_RECIPES_FOR_INGREDIENT);
+        args.putString(RECIPE_ID, null);
+        args.putString(INGREDIENT_NAME, ingredientName);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,6 +70,7 @@ public class RecipesFragment extends Fragment {
         super.onCreate(savedInstanceState);
         fragmentType = getArguments().getInt(TYPE, TYPE_RECIPES_FOR_FRIDGE);
         relatedRecipeId = getArguments().getString(RECIPE_ID, null);
+        ingredientName = getArguments().getString(INGREDIENT_NAME, null);
     }
 
     @Override
@@ -92,6 +108,9 @@ public class RecipesFragment extends Fragment {
             case TYPE_RELATED_RECIPES_FOR_RECIPE:
                 viewModel.fetchRelatedRecipesForRecipe(relatedRecipeId);
                 return viewModel.getRelatedRecipesForRecipe();
+            case TYPE_SUGGESTED_RECIPES_FOR_INGREDIENT:
+                viewModel.fetchSuggestedRecipesForIngredient(ingredientName);
+                return viewModel.getSuggestedRecipesForIngredient();
             default:
                 viewModel.fetchRecipes();
                 return viewModel.getRecipeLiveData();

@@ -1,5 +1,6 @@
 package cp317.wlu.ca.fridgepal.fridge;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,31 +17,34 @@ import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 public class FoodFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.food_fragment_layout, container, false);
+        View view = inflater.inflate(R.layout.food_fragment_layout, container, false);
 
         Food foodName = (Food) getArguments().getSerializable("arg_food_name");
 
-        TextView foodNameText = (TextView) v.findViewById(R.id.food_name_text);
+        TextView foodNameText = view.findViewById(R.id.food_name_text);
         foodNameText.setText(foodName.getName());
-        TextView foodCatText = (TextView) v.findViewById(R.id.food_category_text);
+        TextView foodCatText = view.findViewById(R.id.food_category_text);
         foodCatText.setText(foodName.getCategory());
-        TextView addDate = (TextView) v.findViewById(R.id.date_added_text);
+        TextView addDate = view.findViewById(R.id.date_added_text);
         addDate.setText(foodName.getAddedDate());
-        TextView expiryDate = (TextView) v.findViewById(R.id.expiry_date_text);
+        TextView expiryDate = view.findViewById(R.id.expiry_date_text);
         expiryDate.setText(foodName.getExpiryDate());
-        TextView isPriority = (TextView) v.findViewById(R.id.priority_item);
+        TextView isPriority = view.findViewById(R.id.priority_item);
 
-        Button deleteFoodButton = (Button) v.findViewById(R.id.delete_food_button);
+        Button deleteFoodButton = view.findViewById(R.id.delete_food_button);
 
-        deleteFoodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FoodRepository.getInstance().removedFood(foodName);
-                getActivity().finish();
-            }
+        deleteFoodButton.setOnClickListener(v -> {
+            FoodRepository.getInstance().removedFood(foodName);
+            getActivity().finish();
         });
 
-        return v;
+        view.findViewById(R.id.button_suggested_recipes).setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), SuggestedRecipesActivity.class);
+            intent.putExtra(SuggestedRecipesActivity.EXTRA_INGREDIENT_NAME, foodName.getName());
+            startActivity(intent);
+        });
+
+        return view;
     }
 
     public static FoodFragment newInstance(Food foodObj) {

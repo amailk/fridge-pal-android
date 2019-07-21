@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cp317.wlu.ca.fridgepal">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".fridge.SuggestedRecipesActivity"
+            android:label="@string/title_activity_suggested_recipes"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <service
             android:name=".notifications.MyFireBaseMessagingService"
             android:enabled="true"
