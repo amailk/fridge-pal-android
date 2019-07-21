@@ -5,43 +5,67 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.squareup.picasso.Picasso;
 
 import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Food;
 import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
+import cp317.wlu.ca.fridgepal.repositories.SpoonacularRepository;
 
 public class FoodFragment extends Fragment {
+
+    private SpoonacularRepository spoonacularRepository;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        spoonacularRepository = new SpoonacularRepository();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.food_fragment_layout, container, false);
 
-        Food foodName = (Food) getArguments().getSerializable("arg_food_name");
+        Food food = (Food) getArguments().getSerializable("arg_food_name");
 
-        TextView foodNameText = view.findViewById(R.id.food_name_text);
-        foodNameText.setText(foodName.getName());
-        TextView foodCatText = view.findViewById(R.id.food_category_text);
-        foodCatText.setText(foodName.getCategory());
-        TextView addDate = view.findViewById(R.id.date_added_text);
-        addDate.setText(foodName.getAddedDate());
-        TextView expiryDate = view.findViewById(R.id.expiry_date_text);
-        expiryDate.setText(foodName.getExpiryDate());
-        TextView isPriority = view.findViewById(R.id.priority_item);
+        TextView foodNameText = view.findViewById(R.id.textview_food_name);
+        foodNameText.setText(food.getName());
 
-        Button deleteFoodButton = view.findViewById(R.id.delete_food_button);
+        TextView expiryDate = view.findViewById(R.id.textview_expiry_date);
+        expiryDate.setText(food.getExpiryDate());
 
-        deleteFoodButton.setOnClickListener(v -> {
-            FoodRepository.getInstance().removedFood(foodName);
+        view.findViewById(R.id.fab_delete).setOnClickListener(v -> {
+            FoodRepository.getInstance().removeFood(food);
             getActivity().finish();
         });
 
         view.findViewById(R.id.button_suggested_recipes).setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), SuggestedRecipesActivity.class);
-            intent.putExtra(SuggestedRecipesActivity.EXTRA_INGREDIENT_NAME, foodName.getName());
+            intent.putExtra(SuggestedRecipesActivity.EXTRA_INGREDIENT_NAME, food.getName());
             startActivity(intent);
+        });
+
+        spoonacularRepository.fetchFoodInformation(food.getName(), foodWithData -> {
+            ImageView foodImageView = view.findViewById(R.id.image_view_food);
+            Picasso.get().load(foodWithData.getImage()).fit().centerInside().into(foodImageView);
+        });
+
+        spoonacularRepository.fetchNutritionInfo(food.getName(), nutritionInfo -> {
+            TextView caloriesText = view.findViewById(R.id.calories);
+            TextView proteinText = view.findViewById(R.id.protein);
+            TextView fatText = view.findViewById(R.id.fat);
+            TextView carbsText = view.findViewById(R.id.carbs);
+
+            caloriesText.setText(nutritionInfo.getCalories().getValue() + " calories");
+            proteinText.setText(nutritionInfo.getProtein().getValue() + "g");
+            fatText.setText(nutritionInfo.getFat().getValue() + "g");
+            carbsText.setText(nutritionInfo.getCarbs().getValue() + "g");
         });
 
         return view;

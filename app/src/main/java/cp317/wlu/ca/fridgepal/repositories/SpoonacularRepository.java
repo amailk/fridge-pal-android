@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import cp317.wlu.ca.fridgepal.model.Food;
+import cp317.wlu.ca.fridgepal.model.NutritionInfo;
 import cp317.wlu.ca.fridgepal.model.Recipe;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -89,9 +91,6 @@ public class SpoonacularRepository {
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
                 Log.d(TAG, "Response recieved: " + response.body().size());
 
-//                List<Recipe> recipes = response.body();
-//                recipes.forEach(r -> r.setImage("https://spoonacular.com/recipeImages/"+r.getImage()));
-
                 result.accept(
                         response.body()
                                 .stream()
@@ -104,14 +103,49 @@ public class SpoonacularRepository {
                                 .distinct()
                                 .collect(Collectors.toList())
                 );
-
-//                result.accept(recipes);
             }
 
             @Override
             public void onFailure(Call<List<Recipe>> call, Throwable t) {
                 Log.e(TAG, "onFailure" + t.getMessage());
                 result.accept(Collections.emptyList());
+            }
+        });
+    }
+
+    public void fetchFoodInformation(String foodName, Consumer<Food> result) {
+        Call<List<Food>> foodCall = spoonacularApi.getFoodInformation(foodName);
+        foodCall.enqueue(new Callback<List<Food>>() {
+            @Override
+            public void onResponse(Call<List<Food>> call, Response<List<Food>> response) {
+                Log.d(TAG, "Response received: " + response.body().size());
+
+                Food food = response.body().get(0);
+                food.setImage("https://spoonacular.com/cdn/ingredients_100x100/" + food.getImage());
+                Log.d(TAG, "Food: " + food.getImage());
+
+                result.accept(food);
+            }
+
+            @Override
+            public void onFailure(Call<List<Food>> call, Throwable t) {
+                Log.d(TAG, "onFailure " + t.getMessage());
+            }
+        });
+    }
+
+    public void fetchNutritionInfo(String foodName, Consumer<NutritionInfo> result) {
+        Call<NutritionInfo> nutritionInfoCall = spoonacularApi.getNutriotionInfo(foodName);
+        nutritionInfoCall.enqueue(new Callback<NutritionInfo>() {
+            @Override
+            public void onResponse(Call<NutritionInfo> call, Response<NutritionInfo> response) {
+                Log.d(TAG, "Response received: " + response.body().getCalories().getValue());
+                result.accept(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<NutritionInfo> call, Throwable t) {
+                Log.e(TAG, "onFailure " + t.getMessage());
             }
         });
     }
@@ -129,5 +163,12 @@ public class SpoonacularRepository {
         @Headers(API_KEY_HEADER)
         Call<List<Recipe>> getRelatedRecipesForRecipe(@Path("id") String recipeId);
 
+        @GET("food/ingredients/autocomplete?number=1")
+        @Headers(API_KEY_HEADER)
+        Call<List<Food>> getFoodInformation(@Query("query") String foodName);
+
+        @GET("recipes/guessNutrition")
+        @Headers(API_KEY_HEADER)
+        Call<NutritionInfo> getNutriotionInfo(@Query("title") String foodName);
     }
 }

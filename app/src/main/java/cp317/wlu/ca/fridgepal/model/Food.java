@@ -21,6 +21,8 @@ public class Food implements Serializable {
     private String category;
     @Exclude
     private String Uuid;
+    @Exclude
+    private String image;
 
     public Food() {
         // Default constructor required for Firebase
@@ -73,6 +75,16 @@ public class Food implements Serializable {
     @Exclude
     public String getUuid() {
         return Uuid;
+    }
+
+    @Exclude
+    public String getImage() {
+        return image;
+    }
+
+    @Exclude
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Exclude
