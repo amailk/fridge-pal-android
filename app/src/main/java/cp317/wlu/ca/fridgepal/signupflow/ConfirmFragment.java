@@ -3,6 +3,8 @@ package cp317.wlu.ca.fridgepal.signupflow;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import cp317.wlu.ca.fridgepal.R;
@@ -45,6 +48,9 @@ public class ConfirmFragment extends Fragment {
 
         groceryText = view.findViewById(R.id.user_groceryDay);
         dietaryText = view.findViewById(R.id.user_dietary);
+
+        ImageView confirmImage = view.findViewById(R.id.confirm_image);
+        confirmImage.setColorFilter(new PorterDuffColorFilter(getContext().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.MULTIPLY));
 
         Button nextButton = view.findViewById(R.id.button4);
         nextButton.setOnClickListener(onNextPressedListener::onNextPressed);

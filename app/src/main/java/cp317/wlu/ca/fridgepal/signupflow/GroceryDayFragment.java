@@ -2,6 +2,10 @@ package cp317.wlu.ca.fridgepal.signupflow;
 import cp317.wlu.ca.fridgepal.R;
 
 import androidx.lifecycle.ViewModelProviders;
+
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 
@@ -33,6 +38,9 @@ public class GroceryDayFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_grocery_day, container, false);
         Spinner spinner = view.findViewById(R.id.spinner);
+
+        ImageView groceryDayImage = view.findViewById(R.id.grocery_day_image);
+        groceryDayImage.setColorFilter(new PorterDuffColorFilter(getContext().getColor(R.color.secondaryDarkColor), PorterDuff.Mode.MULTIPLY));
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.days, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
