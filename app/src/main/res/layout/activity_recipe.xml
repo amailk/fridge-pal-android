@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/secondaryColor"
     tools:context=".recipes.RecipeActivity">
 
     <ImageView
@@ -26,7 +26,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat"
-        android:textColor="@color/colorSecondary"
+        android:textColor="@color/secondaryColor"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,12 +54,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorColor="@color/primaryColor"
         app:tabIndicatorGravity="top"
-        app:tabRippleColor="@color/colorAccent"
-        app:tabSelectedTextColor="@color/colorPrimaryDark"
+        app:tabRippleColor="@color/secondaryColor"
+        app:tabSelectedTextColor="@color/primaryDarkColor"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:tabTextColor="@color/colorPrimary">
+        app:tabTextColor="@color/primaryColor">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

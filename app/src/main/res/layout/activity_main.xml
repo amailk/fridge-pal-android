@@ -5,7 +5,7 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/secondaryColor"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
@@ -21,11 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryLight"
+            android:background="@color/primaryLightColor"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/app_name"
-            app:titleTextColor="@color/colorPrimaryDark">
+            app:titleTextColor="@color/primaryDarkColor">
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -33,10 +33,10 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabBackground="@color/colorAccent"
-            app:tabIndicatorColor="@color/colorPrimary"
-            app:tabSelectedTextColor="@color/colorPrimaryDark"
-            app:tabTextColor="@color/colorPrimary">
+            app:tabBackground="@color/secondaryColor"
+            app:tabIndicatorColor="@color/primaryColor"
+            app:tabSelectedTextColor="@color/primaryDarkColor"
+            app:tabTextColor="@color/primaryColor">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tabItem"

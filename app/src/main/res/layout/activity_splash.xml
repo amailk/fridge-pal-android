@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
+    android:background="@color/primaryLightColor"
     tools:context=".SplashActivity">
 
     <ImageView
@@ -31,7 +31,7 @@
         android:layout_marginBottom="64dp"
         android:fontFamily="@font/montserrat"
         android:text="Fridge Pal"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/secondaryColor"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
