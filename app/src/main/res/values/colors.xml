@@ -6,4 +6,7 @@
     <color name="colorSecondary">#FD5523</color>
     <color name="colorAccent">#FFFBE6</color>
     <color name="salmon">#fa8072</color>
+    <color name="colorSecondaryMuted">#ff835e</color>
+    <color name="colorLessThanFive">#ebcc34</color>
+    <color name="colorLessThanThree">#ff4a4a</color>
 </resources>

@@ -144,9 +144,9 @@ public class FridgeListFragment extends Fragment {
             LocalDate expiryDate = food.getExpiryDateAsDate();
 
             if (now.until(expiryDate).getDays() < 3) {
-                holder.foodExpDate.setTextColor(Color.RED);
+                holder.foodExpDate.setTextColor(getResources().getColor(R.color.colorLessThanThree, null));
             } else if (now.until(expiryDate).getDays() < 5) {
-                holder.foodExpDate.setTextColor(Color.YELLOW);
+                holder.foodExpDate.setTextColor(getResources().getColor(R.color.colorLessThanFive, null));
             }
 
             holder.foodObj = food;
