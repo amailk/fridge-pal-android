@@ -1,65 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    style="@style/Widget.MaterialComponents.CardView"
     android:layout_width="match_parent"
-    android:layout_height="175dp">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+    android:layout_marginTop="@dimen/mtrl_card_spacing"
+    android:layout_marginRight="@dimen/mtrl_card_spacing"
+    android:minHeight="200dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:cardBackgroundColor="@color/primaryLightColor"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:fontFamily="@font/montserrat"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Raspberry Pie" />
+
+        <ImageView
+            android:id="@+id/recipe_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.37"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_textview"
+            app:layout_constraintVertical_bias="1.0"
+            tools:srcCompat="@drawable/friedrice" />
 
-            <TextView
-                android:id="@+id/name_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:clickable="true"
-                android:fontFamily="@font/montserrat"
-                android:textColor="@color/secondaryColor"
-                android:textSize="18sp"
-                android:textStyle="normal"
-                android:typeface="sans"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.025"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Raspberry Pie" />
-
-            <ImageView
-                android:id="@+id/recipe_image"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.37"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name_textview"
-                app:layout_constraintVertical_bias="1.0"
-                tools:srcCompat="@drawable/friedrice" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

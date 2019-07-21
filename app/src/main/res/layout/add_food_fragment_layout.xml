@@ -67,7 +67,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:endYear="2100"
-                android:headerBackground="@color/primaryLightColor"
                 android:startYear="2019" />
 
             <Button

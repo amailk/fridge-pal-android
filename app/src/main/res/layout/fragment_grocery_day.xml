@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryLightColor"
     tools:context=".signupflow.GroceryDayFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +20,6 @@
             android:text="@string/grocery_text"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/primaryDarkColor"
             android:textSize="36sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/grocery_day_image"
             android:layout_width="255dp"
             android:layout_height="280dp"
             android:layout_marginStart="8dp"
@@ -53,7 +51,6 @@
             android:animateLayoutChanges="false"
             android:dropDownWidth="wrap_content"
             android:entries="@array/days"
-            android:popupBackground="@color/primaryLightColor"
             app:layout_constraintBottom_toTopOf="@+id/button_next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -64,9 +61,7 @@
             android:layout_height="50dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/secondaryLightColor"
             android:text="@string/nextToConfirm_button"
-            android:textColor="@color/primaryDarkColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

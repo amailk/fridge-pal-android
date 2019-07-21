@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryLightColor"
+    android:background="@color/colorPrimaryVariant"
     tools:context=".login.LoginActivity">
 
     <ProgressBar
@@ -17,7 +17,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:indeterminate="true"
-        android:indeterminateTint="@color/primaryColor"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,9 +33,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/primaryColor"
         android:text="@string/login"
-        android:textColor="@color/primaryLightColor"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +67,6 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/montserrat"
         android:text="Fridge Pal"
-        android:textColor="@color/secondaryColor"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
