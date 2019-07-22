@@ -106,8 +106,13 @@ public class AddFoodFragment extends Fragment {
             } else {
                 Food food = new Food(foodName, foodCategory, expiryDate);
 
-                FoodRepository.getInstance().addFood(food);
-                getActivity().finish();
+                boolean addFoodResult = FoodRepository.getInstance().addFood(food);
+                if (!addFoodResult) {
+                    // Show error dialog
+                    Toast.makeText(getActivity(), "You have exceeded the fridge limit", Toast.LENGTH_SHORT).show();
+                } else {
+                    getActivity().finish();
+                }
             }
         });
 
