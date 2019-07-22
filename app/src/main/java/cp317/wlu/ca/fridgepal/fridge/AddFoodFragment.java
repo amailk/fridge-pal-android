@@ -1,5 +1,6 @@
 package cp317.wlu.ca.fridgepal.fridge;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,17 +26,19 @@ import cp317.wlu.ca.fridgepal.model.Food;
 import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 
 public class AddFoodFragment extends Fragment {
-    private EditText mFoodName;
+    private TextInputEditText mFoodName;
     private Spinner mFoodCategory;
-    private DatePicker mExpiryDate;
+    private TextInputEditText datePicked;
+    private Button selectExpiryButton;
+
     private Button mAddButton;
-    private Button mBarcodeButton;
+
 
     private String foodName = "";
     private String foodCategory;
 
-    int day, month, year02;
 
+    private int mDay, mMonth, mYear;
     private Date expiryDate = new Date();
 
     @Override
@@ -42,10 +47,9 @@ public class AddFoodFragment extends Fragment {
 
         mFoodName = v.findViewById(R.id.added_food_name);
         mFoodCategory = v.findViewById(R.id.added_food_category);
-        mExpiryDate = v.findViewById(R.id.added_food_expiration_date);
+        datePicked = v.findViewById(R.id.date_picked_edit_text);
+        selectExpiryButton = v.findViewById(R.id.date_picker_open);
         mAddButton = v.findViewById(R.id.added_food_add_button);
-
-        mBarcodeButton = v.findViewById(R.id.button_barcode);
 
         mFoodName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -75,27 +79,19 @@ public class AddFoodFragment extends Fragment {
             }
         });
 
+        selectExpiryButton.setOnClickListener(view -> {
+            final Calendar calendar = Calendar.getInstance();
+            mYear = calendar.get(Calendar.YEAR);
+            mMonth = calendar.get(Calendar.MONTH);
+            mDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-        mExpiryDate.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                day = dayOfMonth;
-                month = monthOfYear;
-                year02 = year;
-
-                Calendar c2 = Calendar.getInstance();
-                c2.set(year02, month, day);
-                expiryDate = c2.getTime();
-            }
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                    (view1, year, month, day) -> {
+                        datePicked.setText(day + "-" + (month + 1) + "-" + year);
+                        expiryDate = new Date(year, month, day);
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
         });
-
-        //day = mExpiryDate.getDayOfMonth();
-        //month = mExpiryDate.getMonth();
-        //year = mExpiryDate.getYear();
-
-        //Calendar c2 = Calendar.getInstance();
-        //c2.set(year02, month, day);
-        //expiryDate = c2.getTime();
 
         mAddButton.setOnClickListener(view -> {
             Date d = new Date();
@@ -110,6 +106,9 @@ public class AddFoodFragment extends Fragment {
                 getActivity().finish();
             }
         });
+
+
+
 
         return v;
     }

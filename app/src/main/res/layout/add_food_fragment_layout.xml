@@ -1,79 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/added_food_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:hint="Food Name" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add Food Using Barcode"
-                android:id="@+id/button_barcode"/>
+    <Spinner
+        android:id="@+id/added_food_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/food_category_list"
+        app:layout_constraintBottom_toTopOf="@+id/date_picked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
-            <TextView
-                android:id="@+id/textView4"
-                style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/add_food_name" />
+    <Button
+        android:id="@+id/added_food_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Add To Fridge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/added_food_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/add_food_name_hint"
-                android:paddingLeft="16dp"
-                android:textSize="16sp" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/date_picked"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/added_food_category">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/date_picked_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="hint" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/textView6"
-                style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/select_food_category" />
-
-            <Spinner
-                android:id="@+id/added_food_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/food_category_list"
-                android:paddingBottom="25dp" />
-
-            <TextView
-                android:id="@+id/textView7"
-                style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/date_of_expiry"/>
-
-            <TextView
-                android:id="@+id/textView8"
-                style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/date_of_expiry" />
-            <DatePicker
-                android:id="@+id/added_food_expiration_date"
-                android:theme="@style/MyDatePickerDialogTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:endYear="2100"
-                android:startYear="2019" />
-
-            <Button
-                android:id="@+id/added_food_add_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/add_food_button" />
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    <Button
+        android:id="@+id/date_picker_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:text="Select Expiry Date"
+        app:layout_constraintBottom_toTopOf="@+id/added_food_add_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/date_picked"
+        app:layout_constraintTop_toBottomOf="@+id/added_food_category"
+        app:layout_constraintVertical_bias="0.696" />
+</androidx.constraintlayout.widget.ConstraintLayout>
