@@ -28,7 +28,6 @@ import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 public class AddFoodFragment extends Fragment {
     private TextInputEditText mFoodName;
     private Spinner mFoodCategory;
-    private TextInputEditText datePicked;
     private Button selectExpiryButton;
 
     private Button mAddButton;
@@ -47,7 +46,6 @@ public class AddFoodFragment extends Fragment {
 
         mFoodName = v.findViewById(R.id.added_food_name);
         mFoodCategory = v.findViewById(R.id.added_food_category);
-        datePicked = v.findViewById(R.id.date_picked_edit_text);
         selectExpiryButton = v.findViewById(R.id.date_picker_open);
         mAddButton = v.findViewById(R.id.added_food_add_button);
 
@@ -87,8 +85,8 @@ public class AddFoodFragment extends Fragment {
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                     (view1, year, month, day) -> {
-                        datePicked.setText(day + "-" + (month + 1) + "-" + year);
                         expiryDate = new Date(year, month, day);
+                        selectExpiryButton.setText("Expiry: " + Food.DATE_FORMAT.format(expiryDate));
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
         });
