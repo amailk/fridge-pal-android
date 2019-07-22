@@ -18,6 +18,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 import cp317.wlu.ca.fridgepal.fridge.FridgeListFragment;
+import cp317.wlu.ca.fridgepal.grocerylist.GroceryListActicity;
 import cp317.wlu.ca.fridgepal.grocerylist.GroceryListFragment;
 import cp317.wlu.ca.fridgepal.recipes.RecipesFragment;
 import cp317.wlu.ca.fridgepal.settings.SettingsActivity;
