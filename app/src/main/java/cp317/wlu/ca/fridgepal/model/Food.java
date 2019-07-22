@@ -13,7 +13,7 @@ import java.util.Date;
 @IgnoreExtraProperties
 public class Food implements Serializable {
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM YYYY");
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM YYYY");
 
     private String name;
     private String addedDate;
