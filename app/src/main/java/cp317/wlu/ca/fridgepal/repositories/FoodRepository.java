@@ -18,10 +18,13 @@ import java.util.Map;
 import cp317.wlu.ca.fridgepal.model.Category;
 import cp317.wlu.ca.fridgepal.model.Food;
 
+
 public class FoodRepository {
     private static final String TAG = "FoodRepository";
     private static FoodRepository instance;
     private static UserRepository userRepository = UserRepository.getInstance();
+
+    private static final int FRIDGE_CAPACITY = 100;
 
     private Map<String, Category> fridge;
     private DatabaseReference databaseReference;
@@ -77,16 +80,27 @@ public class FoodRepository {
         return new ArrayList<>(fridge.values());
     }
 
-    public void addFood(Food food) {
-        databaseReference.push().setValue(food);
+    public boolean addFood(Food food) {
+        if (getFridgeSize() < FRIDGE_CAPACITY) {
+            databaseReference.push().setValue(food);
+            return true;
+        }
+        return false;
     }
 
     public void removeFood(Food food) {
         databaseReference.child(food.getUuid()).removeValue();
     }
 
+    public int getFridgeSize() {
+        return fridge.values().stream()
+                .map(category -> category.getFoods())
+                .mapToInt(List::size)
+                .sum();
+
+    }
+
     public void addDataLoadedListener(DataLoadedListener dataLoadedListener) {
         this.dataLoadedListeners.add(dataLoadedListener);
     }
-
 }
