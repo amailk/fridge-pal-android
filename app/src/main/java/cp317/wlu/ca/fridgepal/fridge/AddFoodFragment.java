@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,7 +23,9 @@ import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Food;
 import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 
+
 public class AddFoodFragment extends Fragment {
+    private static final String TAG = AddFoodFragment.class.getSimpleName();
     private TextInputEditText mFoodName;
     private Spinner mFoodCategory;
     private Button selectExpiryButton;
@@ -85,7 +85,9 @@ public class AddFoodFragment extends Fragment {
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                     (view1, year, month, day) -> {
-                        expiryDate = new Date(year, month, day);
+                        Calendar expiryDateCalendar = Calendar.getInstance();
+                        expiryDateCalendar.set(year, month, day);
+                        expiryDate = expiryDateCalendar.getTime();
                         selectExpiryButton.setText("Expiry: " + Food.DATE_FORMAT.format(expiryDate));
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
