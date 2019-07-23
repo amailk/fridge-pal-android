@@ -7,35 +7,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import cp317.wlu.ca.fridgepal.R;
-import cp317.wlu.ca.fridgepal.model.Ingredient;
+import cp317.wlu.ca.fridgepal.model.Food;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView ingNameTextView;
-        public TextView ingQuantityTextView;
-        public TextView ingAmountTextView;
+        public TextView name;
+        public TextView amount;
+        public ImageView image;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            ingNameTextView = (TextView) itemView.findViewById(R.id.ingname_text_view);
-            ingAmountTextView = (TextView) itemView.findViewById(R.id.ingamount_textview);
-            ingQuantityTextView = (TextView) itemView.findViewById(R.id.ingquantity_textview);
+            name = itemView.findViewById(R.id.number);
+            image = itemView.findViewById(R.id.image);
+            amount = itemView.findViewById(R.id.step);
         }
     }
 
-    private List<Ingredient> ingredients;
-    private Context context;
+    private List<Food> ingredients;
 
-    public IngredientsAdapter(List<Ingredient> ingredients, Context context) {
+    public IngredientsAdapter(List<Food> ingredients) {
         System.out.println("Ingredients size: " + ingredients.size());
         this.ingredients = ingredients;
-        this.context = context;
     }
 
     @Override
@@ -51,23 +52,15 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     @Override
     public void onBindViewHolder(IngredientsAdapter.ViewHolder viewHolder, int position) {
-        System.out.println("position: " + position);
-        Ingredient ingredient = ingredients.get(position);
+        Food ingredient = ingredients.get(position);
 
-        TextView ingNameTextView = viewHolder.ingNameTextView;
-        ingNameTextView.setText(ingredient.getName());
-
-        TextView ingAmountTextView = viewHolder.ingAmountTextView;
-        ingAmountTextView.setText(Integer.toString(ingredient.getAmount()));
-
-        TextView ingQuantityTextView = viewHolder.ingQuantityTextView;
-        ingQuantityTextView.setText(ingredient.getQuantityType().toString());
-
+        viewHolder.name.setText(ingredient.getName());
+        viewHolder.amount.setText(ingredient.getAmount() + " " + ingredient.getUnit());
+        Picasso.get().load(ingredient.getImage()).fit().centerInside().into(viewHolder.image);
     }
 
     @Override
     public int getItemCount() {
-        System.out.println("Size: " + ingredients.size());
         return ingredients.size();
     }
 

@@ -14,7 +14,7 @@ public class Instruction {
         this.steps = steps;
     }
 
-    class Step {
+    public class Step {
         int number;
         String step;
 

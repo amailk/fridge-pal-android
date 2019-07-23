@@ -12,6 +12,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import cp317.wlu.ca.fridgepal.model.Food;
+import cp317.wlu.ca.fridgepal.model.Instruction;
 import cp317.wlu.ca.fridgepal.model.NutritionInfo;
 import cp317.wlu.ca.fridgepal.model.Recipe;
 import retrofit2.Call;
@@ -72,8 +73,21 @@ public class SpoonacularRepository {
         recipeCall.enqueue(new Callback<Recipe>() {
             @Override
             public void onResponse(Call<Recipe> call, Response<Recipe> response) {
-                Log.d(TAG, "Response received: " + response.body().getId() + " " + response.body().getTitle());
-                result.accept(response.body());
+                Recipe recipe = response.body();
+                Log.d(TAG, "Response received: " + recipe.getId() + " " + recipe.getTitle());
+
+                for (Food food: recipe.getExtendedIngredients()) {
+                    food.setImage("https://spoonacular.com/cdn/ingredients_100x100/" + food.getImage());
+                    Log.d(TAG, food.getName());
+                }
+
+                if (!recipe.getAnalyzedInstructions().isEmpty()) {
+                    for (Instruction.Step step : recipe.getAnalyzedInstructions().get(0).getSteps()) {
+                        Log.d(TAG, step.getNumber() + " " + step.getStep());
+                    }
+                }
+
+                result.accept(recipe);
             }
 
             @Override

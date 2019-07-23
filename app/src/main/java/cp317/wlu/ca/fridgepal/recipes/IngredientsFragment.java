@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -22,9 +23,7 @@ public class IngredientsFragment extends Fragment {
         return new IngredientsFragment();
     }
 
-    private Recipe recipe;
     private RecipesViewModel viewModel;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,13 +37,13 @@ public class IngredientsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = ViewModelProviders.of(getActivity()).get(RecipesViewModel.class);
-        recipe = viewModel.getSelectedRecipeLiveData().getValue();
-
         final RecyclerView ingredientsRecyclerView = view.findViewById(R.id.ingredient_recycler_view);
 
-        // TODO: get ingredients from recipe
-//        IngredientsAdapter adapter = new IngredientsAdapter(recipe.getIngredients(), getContext());
-//        ingredientsRecyclerView.setAdapter(adapter);
-//        ingredientsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        viewModel.getSelectedRecipeLiveData().observe(this, recipe -> {
+            IngredientsAdapter adapter = new IngredientsAdapter(recipe.getExtendedIngredients());
+            ingredientsRecyclerView.setAdapter(adapter);
+            ingredientsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        });
+
     }
 }

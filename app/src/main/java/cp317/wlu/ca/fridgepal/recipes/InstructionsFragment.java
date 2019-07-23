@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,12 +35,15 @@ public class InstructionsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView instructions = view.findViewById(R.id.instructions);
-
         viewModel = ViewModelProviders.of(getActivity()).get(RecipesViewModel.class);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
 
         viewModel.getSelectedRecipeLiveData().observe(this, recipe -> {
-            instructions.setText(recipe.getInstructions());
+            if (!recipe.getAnalyzedInstructions().isEmpty()) {
+                InstructionsAdapter adapter = new InstructionsAdapter(recipe.getAnalyzedInstructions().get(0).getSteps());
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            }
         });
     }
 }

@@ -10,7 +10,8 @@ public class Recipe {
     int readyInMinutes;
     String image;
     String instructions;
-//    List<Instruction> analyzedInstructions;
+    List<Food> extendedIngredients;
+    List<Instruction> analyzedInstructions;
 
     public boolean isVegetarian() {
         return vegetarian;
@@ -59,15 +60,22 @@ public class Recipe {
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
-//
-//    public List<Instruction> getAnalyzedInstructions() {
-//        return analyzedInstructions;
-//    }
-//
-//    public void setAnalyzedInstructions(List<Instruction> analyzedInstructions) {
-//        this.analyzedInstructions = analyzedInstructions;
-//    }
 
+    public List<Instruction> getAnalyzedInstructions() {
+        return analyzedInstructions;
+    }
+
+    public void setAnalyzedInstructions(List<Instruction> analyzedInstructions) {
+        this.analyzedInstructions = analyzedInstructions;
+    }
+
+    public List<Food> getExtendedIngredients() {
+        return extendedIngredients;
+    }
+
+    public void setExtendedIngredients(List<Food> extendedIngredients) {
+        this.extendedIngredients = extendedIngredients;
+    }
 
     @Override
     public boolean equals(Object o) {
