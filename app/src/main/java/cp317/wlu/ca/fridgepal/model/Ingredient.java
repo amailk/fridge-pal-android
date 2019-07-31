@@ -18,7 +18,6 @@ public class Ingredient implements Parcelable {
     };
     String name;
 
-    ;
     int amount;
 
     QuantityType quantityType;

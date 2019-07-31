@@ -33,8 +33,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
 
         View recipeView = inflater.inflate(R.layout.item_recipe, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(recipeView);
-        return viewHolder;
+        return new ViewHolder(recipeView);
     }
 
     @Override

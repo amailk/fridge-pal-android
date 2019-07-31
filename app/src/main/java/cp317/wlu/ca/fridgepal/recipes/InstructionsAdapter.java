@@ -28,8 +28,7 @@ public class InstructionsAdapter extends RecyclerView.Adapter<InstructionsAdapte
 
         View ingredientView = inflater.inflate(R.layout.item_instruction, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(ingredientView);
-        return viewHolder;
+        return new ViewHolder(ingredientView);
     }
 
     @Override

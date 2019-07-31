@@ -95,21 +95,18 @@ public class LoginActivity extends AppCompatActivity {
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         auth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            //Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = auth.getCurrentUser();
-                            viewModel.userAuthenticated();
-                            handleAuthenticatedUser();
-                        } else {
-                            isInProgress(false);
-                            //If Sign in fails, display a message to the user
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Snackbar.make(findViewById(R.id.main_content), "Authentication Failed", Snackbar.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        //Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success");
+                        FirebaseUser user = auth.getCurrentUser();
+                        viewModel.userAuthenticated();
+                        handleAuthenticatedUser();
+                    } else {
+                        isInProgress(false);
+                        //If Sign in fails, display a message to the user
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+                        Snackbar.make(findViewById(R.id.main_content), "Authentication Failed", Snackbar.LENGTH_SHORT).show();
                     }
                 });
     }

@@ -98,8 +98,7 @@ public class GroceryListFragment extends Fragment {
 
             View groceryListItemView = inflater.inflate(R.layout.item_grocery_list_item, parent, false);
 
-            ViewHolder viewHolder = new ViewHolder(groceryListItemView);
-            return viewHolder;
+            return new ViewHolder(groceryListItemView);
         }
 
         @Override

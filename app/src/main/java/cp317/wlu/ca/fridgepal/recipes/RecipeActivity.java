@@ -24,7 +24,6 @@ public class RecipeActivity extends AppCompatActivity {
     private static final String TAG = RecipeActivity.class.getSimpleName();
 
     private String recipeId;
-    private ViewPager viewPager;
     private RecipesViewModel viewModel;
 
     @Override
@@ -37,7 +36,7 @@ public class RecipeActivity extends AppCompatActivity {
         viewModel.fetchSelectedRecipe(recipeId);
         viewModel.getSelectedRecipeLiveData().observe(this, recipe -> populateViews(recipe));
 
-        viewPager = findViewById(R.id.container);
+        ViewPager viewPager = findViewById(R.id.container);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         TabLayout tabLayout = findViewById(R.id.recipe_tabs);

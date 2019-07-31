@@ -26,11 +26,7 @@ import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 
 public class AddFoodFragment extends Fragment {
     private static final String TAG = AddFoodFragment.class.getSimpleName();
-    private TextInputEditText mFoodName;
-    private Spinner mFoodCategory;
     private Button selectExpiryButton;
-
-    private Button mAddButton;
 
 
     private String foodName = "";
@@ -44,10 +40,10 @@ public class AddFoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.add_food_fragment_layout, container, false);
 
-        mFoodName = v.findViewById(R.id.added_food_name);
-        mFoodCategory = v.findViewById(R.id.added_food_category);
+        TextInputEditText mFoodName = v.findViewById(R.id.added_food_name);
+        Spinner mFoodCategory = v.findViewById(R.id.added_food_category);
         selectExpiryButton = v.findViewById(R.id.date_picker_open);
-        mAddButton = v.findViewById(R.id.added_food_add_button);
+        Button mAddButton = v.findViewById(R.id.added_food_add_button);
 
         mFoodName.addTextChangedListener(new TextWatcher() {
             @Override
