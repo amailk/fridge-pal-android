@@ -23,14 +23,18 @@ public class FoodRepository {
     private static final String TAG = "FoodRepository";
     private static final int FRIDGE_CAPACITY = 100;
     private static FoodRepository instance;
-    private static UserRepository userRepository = UserRepository.getInstance();
-    private Map<String, Category> fridge;
+    private static UserRepository userRepository;
+    protected Map<String, Category> fridge;
     private DatabaseReference databaseReference;
-    private List<DataLoadedListener> dataLoadedListeners = new ArrayList<>();
+    protected List<DataLoadedListener> dataLoadedListeners = new ArrayList<>();
 
     private FoodRepository() {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("food").child(userRepository.getUser().getUid());
+        this.databaseReference = FirebaseDatabase.getInstance().getReference().child("food").child(userRepository.getUser().getUid());
+        this.userRepository = UserRepository.getInstance();
+        init();
+    }
 
+    private void init() {
         fridge = new HashMap<>();
         fridge.put("Meat", new Category("Meat"));
         fridge.put("Dairy", new Category("Dairy"));
@@ -60,7 +64,11 @@ public class FoodRepository {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
 
+    FoodRepository(DatabaseReference databaseReference) {
+        this.databaseReference = databaseReference;
+        init();
     }
 
     public static FoodRepository getInstance() {
