@@ -12,8 +12,8 @@ import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import cp317.wlu.ca.fridgepal.MainActivity;
 import cp317.wlu.ca.fridgepal.R;
-import cp317.wlu.ca.fridgepal.fridge.FridgeActivity;
 
 public class MyFireBaseMessagingService extends FirebaseMessagingService {
     public MyFireBaseMessagingService() {
@@ -34,7 +34,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
 
     //a method to create status bar notification
     private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, FridgeActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
@@ -42,7 +42,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         //building notification
-        @SuppressWarnings("deprecation") NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this);
+        @SuppressWarnings("deprecation") NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
         notificationBuilder.setSmallIcon(R.drawable.ic_stat_name);
         notificationBuilder.setContentTitle("FridgePal");
         notificationBuilder.setContentText(messageBody);

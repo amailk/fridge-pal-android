@@ -23,7 +23,6 @@ import cp317.wlu.ca.fridgepal.model.Food;
 import cp317.wlu.ca.fridgepal.repositories.FoodRepository;
 
 public class FridgeListFragment extends Fragment {
-    private RecyclerView mRecyclerView;
     private ItemAdapter mAdapter;
     private FoodRepository foodRepository;
 
@@ -37,14 +36,14 @@ public class FridgeListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fridge_list_fragment_layout, container, false);
 
-        mRecyclerView = view.findViewById(R.id.recycler_view);
+        RecyclerView mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mAdapter = new ItemAdapter(foodRepository.getCategories());
         mRecyclerView.setAdapter(mAdapter);
 
-        FloatingActionButton addButon = view.findViewById(R.id.add_food_item_button);
-        addButon.setOnClickListener(v -> {
+        FloatingActionButton addButton = view.findViewById(R.id.add_food_item_button);
+        addButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AddFoodActivity.class);
             startActivity(intent);
         });
@@ -82,9 +81,7 @@ public class FridgeListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            //Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
             Intent intent = FoodActivity.newIntent(getActivity(), foodObj);
-            //intent.putExtra("arg_food_name", foodObj.getName());
             startActivity(intent);
         }
     }

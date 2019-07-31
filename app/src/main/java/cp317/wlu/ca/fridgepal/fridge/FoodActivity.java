@@ -12,8 +12,8 @@ import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Food;
 
 public class FoodActivity extends AppCompatActivity {
-    public static Intent newIntent(Context packageContext, Food foodObj) // String param to be changed to food id uuid.
-    {
+    public static Intent newIntent(Context packageContext, Food foodObj) {
+        // TODO: String param to be changed to food id uuid.
         Intent intent = new Intent(packageContext, FoodActivity.class);
         intent.putExtra("args_food_id", foodObj);
         return intent;

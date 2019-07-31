@@ -26,18 +26,15 @@ public class SettingsFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.setting_preference);
-        preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-            @Override
-            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                if (key.equals(PREF_GROCERY_DAYS)) {
-                    Preference groceryPref = findPreference(key);
-                    groceryPref.setSummary(sharedPreferences.getString(key, ""));
-                }
+        preferenceChangeListener = (sharedPreferences, key) -> {
+            if (key.equals(PREF_GROCERY_DAYS)) {
+                Preference groceryPref = findPreference(key);
+                groceryPref.setSummary(sharedPreferences.getString(key, ""));
+            }
 
-                if (key.equals(PREF_DIET)) {
-                    Preference dietPref = findPreference(key);
-                    dietPref.setSummary(sharedPreferences.getString(key, ""));
-                }
+            if (key.equals(PREF_DIET)) {
+                Preference dietPref = findPreference(key);
+                dietPref.setSummary(sharedPreferences.getString(key, ""));
             }
         };
 
@@ -57,7 +54,7 @@ public class SettingsFragment extends PreferenceFragment {
 
     @Override
     public void onPause() {
-        super.onResume();
+        super.onPause();
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
     }
 
