@@ -16,13 +16,12 @@ import cp317.wlu.ca.fridgepal.repositories.SpoonacularRepository;
 
 public class RecipesViewModel extends AndroidViewModel {
 
+    private final SpoonacularRepository spoonacularRepository;
+    private final FoodRepository foodRepository;
     private MutableLiveData<List<Recipe>> recipeLiveData = new MutableLiveData<>();
     private MutableLiveData<Recipe> selectedRecipeLiveData = new MutableLiveData<>();
     private MutableLiveData<List<Recipe>> relatedRecipesLiveData = new MutableLiveData<>();
     private MutableLiveData<List<Recipe>> suggestedRecipesLiveData = new MutableLiveData<>();
-
-    private final SpoonacularRepository spoonacularRepository;
-    private final FoodRepository foodRepository;
 
     RecipesViewModel(Application application) {
         super(application);

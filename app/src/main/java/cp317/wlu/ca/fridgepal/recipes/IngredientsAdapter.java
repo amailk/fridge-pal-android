@@ -1,14 +1,13 @@
 package cp317.wlu.ca.fridgepal.recipes;
 
 import android.content.Context;
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
@@ -18,20 +17,6 @@ import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Food;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.ViewHolder> {
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView name;
-        public TextView amount;
-        public ImageView image;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            name = itemView.findViewById(R.id.number);
-            image = itemView.findViewById(R.id.image);
-            amount = itemView.findViewById(R.id.step);
-        }
-    }
-
     private List<Food> ingredients;
 
     public IngredientsAdapter(List<Food> ingredients) {
@@ -62,6 +47,20 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     @Override
     public int getItemCount() {
         return ingredients.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView name;
+        public TextView amount;
+        public ImageView image;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            name = itemView.findViewById(R.id.number);
+            image = itemView.findViewById(R.id.image);
+            amount = itemView.findViewById(R.id.step);
+        }
     }
 
 }

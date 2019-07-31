@@ -76,7 +76,7 @@ public class SpoonacularRepository {
                 Recipe recipe = response.body();
                 Log.d(TAG, "Response received: " + recipe.getId() + " " + recipe.getTitle());
 
-                for (Food food: recipe.getExtendedIngredients()) {
+                for (Food food : recipe.getExtendedIngredients()) {
                     food.setImage("https://spoonacular.com/cdn/ingredients_100x100/" + food.getImage());
                     Log.d(TAG, food.getName());
                 }

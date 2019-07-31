@@ -21,21 +21,10 @@ public class GroceryListRepository {
 
     private static UserRepository userRepository = UserRepository.getInstance();
     private static GroceryListRepository instance;
+    private final DatabaseReference databaseReference;
     private List<DataLoadedListener> dataLoadedListeners = new ArrayList<>();
     private List<GroceryListItem> groceryList = Collections.emptyList();
-    private final DatabaseReference databaseReference;
 
-
-    public interface DataLoadedListener {
-        void onDataLoaded(List<GroceryListItem> groceryList);
-    }
-
-    public static GroceryListRepository getInstance() {
-        if (instance == null) {
-            instance = new GroceryListRepository();
-        }
-        return instance;
-    }
 
     private GroceryListRepository() {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("groceryList").child(userRepository.getUser().getUid());
@@ -63,6 +52,13 @@ public class GroceryListRepository {
         });
     }
 
+    public static GroceryListRepository getInstance() {
+        if (instance == null) {
+            instance = new GroceryListRepository();
+        }
+        return instance;
+    }
+
     public void addDataLoadedListener(DataLoadedListener dataLoadedListener) {
         this.dataLoadedListeners.add(dataLoadedListener);
     }
@@ -86,5 +82,9 @@ public class GroceryListRepository {
         groceryListItem.setName(name);
 
         databaseReference.push().setValue(groceryListItem);
+    }
+
+    public interface DataLoadedListener {
+        void onDataLoaded(List<GroceryListItem> groceryList);
     }
 }

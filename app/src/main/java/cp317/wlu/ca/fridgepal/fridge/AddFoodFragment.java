@@ -113,8 +113,6 @@ public class AddFoodFragment extends Fragment {
         });
 
 
-
-
         return v;
     }
 }

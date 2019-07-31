@@ -15,20 +15,20 @@ public class SignupFlowViewModel extends ViewModel {
         userRepository = UserRepository.getInstance();
     }
 
-    void setGroceryDay(String groceryDay) {
-        this.groceryDay = groceryDay;
-    }
-
-    void setDietaryPreference(String dietaryPreference) {
-        this.dietaryPreference = dietaryPreference;
-    }
-
     public String getGroceryDay() {
         return groceryDay;
     }
 
+    void setGroceryDay(String groceryDay) {
+        this.groceryDay = groceryDay;
+    }
+
     public String getDietaryPreference() {
         return dietaryPreference;
+    }
+
+    void setDietaryPreference(String dietaryPreference) {
+        this.dietaryPreference = dietaryPreference;
     }
 
     void signUpFlowComplete() {

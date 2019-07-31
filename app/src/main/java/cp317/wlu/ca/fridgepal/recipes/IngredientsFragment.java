@@ -1,29 +1,26 @@
 package cp317.wlu.ca.fridgepal.recipes;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import cp317.wlu.ca.fridgepal.R;
-import cp317.wlu.ca.fridgepal.model.Recipe;
 
 public class IngredientsFragment extends Fragment {
+
+    private RecipesViewModel viewModel;
 
     public static IngredientsFragment newInstance() {
         return new IngredientsFragment();
     }
-
-    private RecipesViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

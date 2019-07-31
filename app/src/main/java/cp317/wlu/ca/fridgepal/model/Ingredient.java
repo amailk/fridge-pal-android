@@ -4,17 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Ingredient implements Parcelable {
-    String name;
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Ingredient> CREATOR = new Parcelable.Creator<Ingredient>() {
+        @Override
+        public Ingredient createFromParcel(Parcel in) {
+            return new Ingredient(in);
+        }
 
-    public enum QuantityType {
-        ML,
-        CUPS,
-        OZ,
-        KG,
-        G,
-        TSP,
-        TBSP
-    }
+        @Override
+        public Ingredient[] newArray(int size) {
+            return new Ingredient[size];
+        }
+    };
+    String name;
 
     ;
     int amount;
@@ -25,6 +27,12 @@ public class Ingredient implements Parcelable {
         this.name = name;
         this.quantityType = quantityType;
         this.amount = amount;
+    }
+
+    protected Ingredient(Parcel in) {
+        name = in.readString();
+        amount = in.readInt();
+        quantityType = QuantityType.values()[in.readInt()];
     }
 
     public String getName() {
@@ -39,13 +47,6 @@ public class Ingredient implements Parcelable {
         return amount;
     }
 
-
-    protected Ingredient(Parcel in) {
-        name = in.readString();
-        amount = in.readInt();
-        quantityType = QuantityType.values()[in.readInt()];
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -58,16 +59,13 @@ public class Ingredient implements Parcelable {
         dest.writeInt(quantityType.ordinal());
     }
 
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Ingredient> CREATOR = new Parcelable.Creator<Ingredient>() {
-        @Override
-        public Ingredient createFromParcel(Parcel in) {
-            return new Ingredient(in);
-        }
-
-        @Override
-        public Ingredient[] newArray(int size) {
-            return new Ingredient[size];
-        }
-    };
+    public enum QuantityType {
+        ML,
+        CUPS,
+        OZ,
+        KG,
+        G,
+        TSP,
+        TBSP
+    }
 }

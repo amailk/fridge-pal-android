@@ -16,10 +16,10 @@ public class GroceryListViewModel extends ViewModel {
 
     GroceryListViewModel() {
         groceryListLiveData.setValue(groceryListRepository.getGroceryList());
-        groceryListRepository.addDataLoadedListener( newGroceryList -> groceryListLiveData.setValue(newGroceryList));
+        groceryListRepository.addDataLoadedListener(newGroceryList -> groceryListLiveData.setValue(newGroceryList));
     }
 
-    public LiveData<List<GroceryListItem>>  getGroceryListLiveData() {
+    public LiveData<List<GroceryListItem>> getGroceryListLiveData() {
         return groceryListLiveData;
     }
 

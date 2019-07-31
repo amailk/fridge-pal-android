@@ -1,26 +1,16 @@
 package cp317.wlu.ca.fridgepal.grocerylist;
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.ScrollView;
-import android.widget.LinearLayout;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.EditText;
-import android.widget.CheckBox;
-import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ScrollView;
-import android.widget.LinearLayout;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.EditText;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import java.util.ArrayList;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class GroceryListActicity extends Activity {

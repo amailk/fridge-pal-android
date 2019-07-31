@@ -8,27 +8,12 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import cp317.wlu.ca.fridgepal.R;
-import cp317.wlu.ca.fridgepal.model.Food;
 import cp317.wlu.ca.fridgepal.model.Instruction;
 
 public class InstructionsAdapter extends RecyclerView.Adapter<InstructionsAdapter.ViewHolder> {
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView number;
-        public TextView step;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            number = itemView.findViewById(R.id.number);
-            step = itemView.findViewById(R.id.step);
-        }
-    }
-
     private List<Instruction.Step> steps;
 
     public InstructionsAdapter(List<Instruction.Step> steps) {
@@ -58,6 +43,18 @@ public class InstructionsAdapter extends RecyclerView.Adapter<InstructionsAdapte
     @Override
     public int getItemCount() {
         return steps.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView number;
+        public TextView step;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            number = itemView.findViewById(R.id.number);
+            step = itemView.findViewById(R.id.step);
+        }
     }
 
 }

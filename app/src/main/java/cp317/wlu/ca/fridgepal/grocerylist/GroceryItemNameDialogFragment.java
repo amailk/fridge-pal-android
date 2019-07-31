@@ -13,11 +13,6 @@ import androidx.annotation.Nullable;
 public class GroceryItemNameDialogFragment extends DialogFragment implements TextView.OnEditorActionListener {
     private EditText mEditText;
 
-    // 1. Defines the listener interface with a method passing back data result.
-    public interface EditNameDialogListener {
-        void onFinishEditDialog(String inputText);
-    }
-
     // ...
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -40,5 +35,10 @@ public class GroceryItemNameDialogFragment extends DialogFragment implements Tex
             return true;
         }
         return false;
+    }
+
+    // 1. Defines the listener interface with a method passing back data result.
+    public interface EditNameDialogListener {
+        void onFinishEditDialog(String inputText);
     }
 }

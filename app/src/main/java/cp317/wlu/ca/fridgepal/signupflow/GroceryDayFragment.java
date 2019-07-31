@@ -1,14 +1,8 @@
 package cp317.wlu.ca.fridgepal.signupflow;
-import cp317.wlu.ca.fridgepal.R;
-
-import androidx.lifecycle.ViewModelProviders;
 
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.media.Image;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +11,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
+import cp317.wlu.ca.fridgepal.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class GroceryDayFragment extends Fragment {
-
-    public interface OnNextPressedListener {
-        void onNextPressed(View view);
-    }
 
     private SignupFlowViewModel viewModel;
     private OnNextPressedListener onNextPressedListener;
@@ -42,7 +37,7 @@ public class GroceryDayFragment extends Fragment {
         ImageView groceryDayImage = view.findViewById(R.id.grocery_day_image);
         groceryDayImage.setColorFilter(new PorterDuffColorFilter(getContext().getColor(R.color.secondaryDarkColor), PorterDuff.Mode.MULTIPLY));
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.days, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.days, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -57,5 +52,9 @@ public class GroceryDayFragment extends Fragment {
 
     public void setOnNextPressedListener(OnNextPressedListener onNextPressedListener) {
         this.onNextPressedListener = onNextPressedListener;
+    }
+
+    public interface OnNextPressedListener {
+        void onNextPressed(View view);
     }
 }

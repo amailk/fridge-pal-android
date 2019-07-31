@@ -4,7 +4,6 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -57,13 +56,13 @@ public class Food implements Serializable {
         return expiryDate;
     }
 
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
     @Exclude
     public LocalDate getExpiryDateAsDate() {
         return LocalDate.parse(expiryDate, DateTimeFormatter.ofPattern("dd LLL yyyy"));
-    }
-
-    public void setExpiryDate(String expiryDate) {
-        this.expiryDate = expiryDate;
     }
 
     public String getCategory() {
@@ -80,6 +79,11 @@ public class Food implements Serializable {
     }
 
     @Exclude
+    public void setUuid(String uuid) {
+        Uuid = uuid;
+    }
+
+    @Exclude
     public String getImage() {
         return image;
     }
@@ -87,11 +91,6 @@ public class Food implements Serializable {
     @Exclude
     public void setImage(String image) {
         this.image = image;
-    }
-
-    @Exclude
-    public void setUuid(String uuid) {
-        Uuid = uuid;
     }
 
     public String getAmount() {

@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 
@@ -119,6 +118,11 @@ public class GroceryListFragment extends Fragment {
             return groceryList.size();
         }
 
+        public void setGroceryList(List<GroceryListItem> groceryList) {
+            this.groceryList = groceryList;
+            notifyDataSetChanged();
+        }
+
         public class ViewHolder extends RecyclerView.ViewHolder {
 
             CheckBox checkBox;
@@ -130,11 +134,6 @@ public class GroceryListFragment extends Fragment {
                 checkBox = itemView.findViewById(R.id.checkBox);
                 remove = itemView.findViewById(R.id.button_remove);
             }
-        }
-
-        public void setGroceryList(List<GroceryListItem> groceryList) {
-            this.groceryList = groceryList;
-            notifyDataSetChanged();
         }
     }
 }

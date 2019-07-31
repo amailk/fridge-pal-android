@@ -12,6 +12,13 @@ import cp317.wlu.ca.fridgepal.R;
 import cp317.wlu.ca.fridgepal.model.Food;
 
 public class FoodActivity extends AppCompatActivity {
+    public static Intent newIntent(Context packageContext, Food foodObj) // String param to be changed to food id uuid.
+    {
+        Intent intent = new Intent(packageContext, FoodActivity.class);
+        intent.putExtra("args_food_id", foodObj);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,12 +33,5 @@ public class FoodActivity extends AppCompatActivity {
             f = FoodFragment.newInstance(foodName);
             fm.beginTransaction().add(R.id.food_fragment_container, f).commit();
         }
-    }
-
-    public static Intent newIntent(Context packageContext, Food foodObj) // String param to be changed to food id uuid.
-    {
-        Intent intent = new Intent(packageContext, FoodActivity.class);
-        intent.putExtra("args_food_id", foodObj);
-        return intent;
     }
 }

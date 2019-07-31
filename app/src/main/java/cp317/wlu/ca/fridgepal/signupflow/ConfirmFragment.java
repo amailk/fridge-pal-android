@@ -1,16 +1,9 @@
 package cp317.wlu.ca.fridgepal.signupflow;
 
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +11,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import cp317.wlu.ca.fridgepal.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
+import cp317.wlu.ca.fridgepal.R;
 
 
 /**
@@ -29,16 +26,11 @@ public class ConfirmFragment extends Fragment {
     TextView groceryText;
     TextView dietaryText;
     private SignupFlowViewModel viewModel;
+    private onNextPressedListener onNextPressedListener;
 
     public ConfirmFragment() {
         // Required empty public constructor
     }
-
-    interface onNextPressedListener {
-        void onNextPressed(View view);
-    }
-
-    private onNextPressedListener onNextPressedListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,5 +59,9 @@ public class ConfirmFragment extends Fragment {
 
     public void setOnNextPressedListener(onNextPressedListener onNextPressedListener) {
         this.onNextPressedListener = onNextPressedListener;
+    }
+
+    interface onNextPressedListener {
+        void onNextPressed(View view);
     }
 }

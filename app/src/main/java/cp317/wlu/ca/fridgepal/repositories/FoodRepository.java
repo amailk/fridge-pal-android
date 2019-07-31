@@ -21,25 +21,12 @@ import cp317.wlu.ca.fridgepal.model.Food;
 
 public class FoodRepository {
     private static final String TAG = "FoodRepository";
+    private static final int FRIDGE_CAPACITY = 100;
     private static FoodRepository instance;
     private static UserRepository userRepository = UserRepository.getInstance();
-
-    private static final int FRIDGE_CAPACITY = 100;
-
     private Map<String, Category> fridge;
     private DatabaseReference databaseReference;
     private List<DataLoadedListener> dataLoadedListeners = new ArrayList<>();
-
-    public interface DataLoadedListener {
-        void onDataLoaded();
-    }
-
-    public static FoodRepository getInstance() {
-        if (instance == null) {
-            instance = new FoodRepository();
-        }
-        return instance;
-    }
 
     private FoodRepository() {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("food").child(userRepository.getUser().getUid());
@@ -76,6 +63,13 @@ public class FoodRepository {
 
     }
 
+    public static FoodRepository getInstance() {
+        if (instance == null) {
+            instance = new FoodRepository();
+        }
+        return instance;
+    }
+
     public ArrayList<Category> getCategories() {
         return new ArrayList<>(fridge.values());
     }
@@ -102,5 +96,9 @@ public class FoodRepository {
 
     public void addDataLoadedListener(DataLoadedListener dataLoadedListener) {
         this.dataLoadedListeners.add(dataLoadedListener);
+    }
+
+    public interface DataLoadedListener {
+        void onDataLoaded();
     }
 }

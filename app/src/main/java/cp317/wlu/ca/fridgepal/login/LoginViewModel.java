@@ -7,10 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 import cp317.wlu.ca.fridgepal.repositories.UserRepository;
 

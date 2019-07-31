@@ -22,6 +22,15 @@ public class FoodFragment extends Fragment {
 
     private SpoonacularRepository spoonacularRepository;
 
+    public static FoodFragment newInstance(Food foodObj) {
+        Bundle args = new Bundle();
+        args.putSerializable("arg_food_name", foodObj);
+
+        FoodFragment fragment = new FoodFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,14 +78,5 @@ public class FoodFragment extends Fragment {
         });
 
         return view;
-    }
-
-    public static FoodFragment newInstance(Food foodObj) {
-        Bundle args = new Bundle();
-        args.putSerializable("arg_food_name", foodObj);
-
-        FoodFragment fragment = new FoodFragment();
-        fragment.setArguments(args);
-        return fragment;
     }
 }
