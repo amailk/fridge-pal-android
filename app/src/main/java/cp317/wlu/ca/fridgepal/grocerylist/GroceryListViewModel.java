@@ -14,7 +14,7 @@ public class GroceryListViewModel extends ViewModel {
 
     GroceryListRepository groceryListRepository = GroceryListRepository.getInstance();
 
-    GroceryListViewModel() {
+    public GroceryListViewModel() {
         groceryListLiveData.setValue(groceryListRepository.getGroceryList());
         groceryListRepository.addDataLoadedListener(newGroceryList -> groceryListLiveData.setValue(newGroceryList));
     }

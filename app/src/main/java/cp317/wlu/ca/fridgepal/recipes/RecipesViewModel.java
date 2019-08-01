@@ -23,7 +23,7 @@ public class RecipesViewModel extends AndroidViewModel {
     private MutableLiveData<List<Recipe>> relatedRecipesLiveData = new MutableLiveData<>();
     private MutableLiveData<List<Recipe>> suggestedRecipesLiveData = new MutableLiveData<>();
 
-    RecipesViewModel(Application application) {
+    public RecipesViewModel(Application application) {
         super(application);
         spoonacularRepository = new SpoonacularRepository();
         foodRepository = FoodRepository.getInstance();

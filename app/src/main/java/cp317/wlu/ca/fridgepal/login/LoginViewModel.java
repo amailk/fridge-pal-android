@@ -14,7 +14,7 @@ import cp317.wlu.ca.fridgepal.repositories.UserRepository;
 public class LoginViewModel extends AndroidViewModel {
     private final UserRepository userRepository;
 
-    LoginViewModel(Application application) {
+    public LoginViewModel(Application application) {
         super(application);
         userRepository = UserRepository.getInstance();
     }
