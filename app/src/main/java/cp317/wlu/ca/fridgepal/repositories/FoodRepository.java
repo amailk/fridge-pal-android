@@ -29,8 +29,8 @@ public class FoodRepository {
     protected List<DataLoadedListener> dataLoadedListeners = new ArrayList<>();
 
     private FoodRepository() {
-        this.databaseReference = FirebaseDatabase.getInstance().getReference().child("food").child(userRepository.getUser().getUid());
         this.userRepository = UserRepository.getInstance();
+        this.databaseReference = FirebaseDatabase.getInstance().getReference().child("food").child(userRepository.getUser().getUid());
         init();
     }
 
