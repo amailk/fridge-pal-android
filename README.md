@@ -7,7 +7,7 @@ Fridge Pal is an Android Application designed to help users keep track of food i
 
 
 ```bash
-adb install /path/to/fridgepal/apk
+adb install -r fridgepal.apk
 ```
 ## Built With
 * Java
