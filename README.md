@@ -1,4 +1,5 @@
 # Fridge Pal
+<img src="https://i.imgur.com/n4B4pxU.png" width="250">   <img src="https://i.imgur.com/g5ZH1q5.png" width="250">   <img src="https://i.imgur.com/LfT3l34.png" width="250">
 
 Fridge Pal is an Android Application designed to help users keep track of food in the refrigerator. It notifies users before the food expires, suggests recipes based on ingredients available in the fridge and allow users to create weekly grocery lists.
 
